@@ -220,7 +220,7 @@ document.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
         if (!isNavigating) {
             let quadrant = getQuadrant(theta);
-            stopAndZoomAndFade(quadrant); // New synced function here!
+            stopZoomFadeRedirect(quadrant);
         } else {
             resetNavigation();
         }
@@ -236,15 +236,15 @@ function getQuadrant(angle) {
     return null;
 }
 
-// -------------------- STOP + ZOOM + FADE SIMULTANEOUSLY --------------------
+// -------------------- STOP + ZOOM + FADE + REDIRECT --------------------
 
-function stopAndZoomAndFade(quadrant) {
+function stopZoomFadeRedirect(quadrant) {
     if (!quadrant || isNavigating) return;
 
     isNavigating = true;
     quadrantStopped = quadrant;
 
-    hideOtherQuadrants(quadrant);
+    fadeOutAllQuadrants(); // Fade out all quadrant titles
 
     canvas.style.transition = 'transform 1.5s ease-in-out, opacity 1.5s ease-in-out';
     document.getElementById('euler-text').style.transition = 'opacity 0.5s ease-in-out';
@@ -268,35 +268,33 @@ function stopAndZoomAndFade(quadrant) {
     }
 
     canvas.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(1.8)`;
-    canvas.style.opacity = 0; // Fade happens at the same time now!
+    canvas.style.opacity = 0;
 
+    // Redirect after transition
     setTimeout(() => {
-        showContinueButton();
+        redirectToPage(quadrant);
     }, 1500);
 }
 
-// Hide other quadrant titles with fade-out
-function hideOtherQuadrants(excludeQuadrant) {
-    Object.keys(quadrantLabels).forEach((key) => {
-        if (key !== excludeQuadrant) {
-            quadrantLabels[key].style.transition = 'opacity 0.8s ease-in-out';
-            quadrantLabels[key].style.opacity = 0;
-        }
-    });
-}
-
-// Show quadrant titles again when returning to center
-function showAllQuadrants() {
+// Fade out all quadrant titles
+function fadeOutAllQuadrants() {
     Object.keys(quadrantLabels).forEach((key) => {
         quadrantLabels[key].style.transition = 'opacity 0.8s ease-in-out';
-        quadrantLabels[key].style.opacity = 0.9;
+        quadrantLabels[key].style.opacity = 0;
     });
 }
 
-// -------------------- SHOW / HIDE CONTINUE BUTTON --------------------
-function showContinueButton() {
-    continueButton.classList.remove('hidden');
-    continueButton.addEventListener('click', resetNavigation);
+// Redirect based on quadrant
+function redirectToPage(quadrant) {
+    if (quadrant === 'about') {
+        window.location.href = 'about.html';
+    } else if (quadrant === 'projects') {
+        window.location.href = 'projects.html';
+    } else if (quadrant === 'skills') {
+        window.location.href = 'skills.html';
+    } else if (quadrant === 'contact') {
+        window.location.href = 'contact.html';
+    }
 }
 
 function resetNavigation() {
@@ -312,4 +310,12 @@ function resetNavigation() {
     setTimeout(() => {
         isNavigating = false;
     }, 1500);
+}
+
+// Show quadrant titles again when returning to center
+function showAllQuadrants() {
+    Object.keys(quadrantLabels).forEach((key) => {
+        quadrantLabels[key].style.transition = 'opacity 0.8s ease-in-out';
+        quadrantLabels[key].style.opacity = 0.9;
+    });
 }
