@@ -24,6 +24,6 @@ function navigateToHome() {
     document.querySelector('.container').style.transform = 'translateY(-20px)';
 
     setTimeout(() => {
-        window.location.href = 'landing.html'; // Return to rotating vector page
+        window.location.href = '../landing/landing.html'; // Return to rotating vector page
     }, 600);
 }
