@@ -1,108 +1,95 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
-
 body {
-    overflow: hidden;
-    background-color: #0a0a0a;
-    font-family: 'Courier New', Courier, monospace;
-    color: #00ffcc;
+overflow: hidden;
+background-color: #0a0a0a;
+font-family: 'Courier New', Courier, monospace;
+color: #00ffcc;
 }
-
 canvas {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
+display: block;
+position: absolute;
+top: 0;
+left: 0;
 }
-
 #euler-text {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 28px;
-    color: #00ffcc;
-    opacity: 0.9;
-    z-index: 2;
+position: absolute;
+top: 20px;
+left: 20px;
+font-size: 28px;
+color: #00ffcc;
+opacity: 0.9;
+z-index: 2;
 }
-
 #loading-text {
-    position: absolute;
-    bottom: 30px;
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    color: #00ffcc;
-    letter-spacing: 2px;
-    z-index: 2;
-    opacity: 0.8;
+position: absolute;
+bottom: 30px;
+width: 100%;
+text-align: center;
+font-size: 24px;
+color: #00ffcc;
+letter-spacing: 2px;
+z-index: 2;
+opacity: 0.8;
 }
-
 #hello-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 48px;
-    color: #00ffcc;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    transition: opacity 1.5s ease-in-out;
+position: absolute;
+top: 50%;
+left: 50%;
+font-size: 48px;
+color: #00ffcc;
+opacity: 0;
+transform: translate(-50%, -50%);
+z-index: 3;
+transition: opacity 1.5s ease-in-out;
 }
-
 .quadrant-label {
-    position: absolute;
-    font-size: 24px;
-    color: #00ffcc;
-    font-weight: bold;
-    opacity: 0.9;
-    z-index: 3;
-    transition: opacity 1s ease-in-out;
+position: absolute;
+font-size: 24px;
+color: #00ffcc;
+font-weight: bold;
+opacity: 0.9;
+z-index: 3;
+transition: opacity 1s ease-in-out;
 }
-
 #about {
-    top: 20%;
-    right: 20%;
+top: 20%;
+right: 20%;
 }
-
 #projects {
-    top: 20%;
-    left: 20%;
+top: 20%;
+left: 20%;
 }
-
 #skills {
-    bottom: 20%;
-    left: 20%;
+bottom: 20%;
+left: 20%;
 }
-
 #contact {
-    bottom: 20%;
-    right: 20%;
+bottom: 20%;
+right: 20%;
 }
-
 .hidden {
-    display: none;
+display: none;
 }
-
 #continue-btn {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #00ffcc;
-    color: #0a0a0a;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s;
-    opacity: 0.9;
-    z-index: 10;
+position: absolute;
+bottom: 30px;
+right: 30px;
+padding: 10px 20px;
+font-size: 16px;
+background-color: #00ffcc;
+color: #0a0a0a;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+transition: transform 0.3s, background-color 0.3s;
+opacity: 0.9;
+z-index: 10;
 }
-
 #continue-btn:hover {
-    background-color: #00cc99;
-    transform: scale(1.1);
+background-color: #00cc99;
+transform: scale(1.1);
 }

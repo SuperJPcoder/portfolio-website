@@ -1,0 +1,144 @@
+/* Reset and base styling */
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #0a0a0a, #000000 80%);
+    color: #00ffcc;
+    font-family: 'Poppins', sans-serif;
+    height: auto;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Name tracing animation container */
+.name-animation {
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* SVG Text styling for name */
+.name-animation svg text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 120px;
+    fill: none;
+    stroke: #00ffcc;
+    stroke-width: 2;
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: drawName 3s linear forwards;
+}
+
+/* Name tracing animation */
+@keyframes drawName {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Hide content container initially until animation ends */
+.container {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 1s ease-in-out;
+    display: block;
+}
+
+/* Reveal container smoothly after name tracing */
+.container.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Main section styling */
+h1 {
+    font-size: 54px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, #00ffcc, #00cc99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+h2 {
+    font-size: 32px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+    color: #00cc99;
+    text-shadow: 0 0 12px #00ffcc;
+    text-align: center;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #d1f4f2;
+    max-width: 80%;
+    margin: 0 auto 30px auto;
+    text-align: center;
+}
+
+/* Links section styling */
+.links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.links a {
+    color: #00ffcc;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 14px 28px;
+    border-radius: 30px;
+    border: 1px solid #00cc99;
+    transition: all 0.3s ease-in-out;
+    background: rgba(0, 255, 204, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+}
+
+.links a:hover {
+    background: #00cc99;
+    color: #0a0a0a;
+    box-shadow: 0 0 20px #00ffcc;
+    transform: scale(1.1);
+    text-shadow: 0 0 12px #0ff;
+}
+
+/* Spacebar navigation text */
+#spacebar-text {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #00ffcc;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Fade-in animation for main content */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

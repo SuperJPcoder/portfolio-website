@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fourier Shape with Animated Phasors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 10px;
+    }
+    canvas {
+      border: 2px solid #333;
+      margin-top: 20px;
+      background-color: #fff;
+    }
+    input[type="file"] {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Fourier Shape Reconstruction with Animated Phasors</h2>
+  <input type="file" id="fileInput" accept=".txt">
+  <br>
+  <canvas id="shapeCanvas" width="600" height="600"></canvas>
+  <script>
+    document.getElementById("fileInput").addEventListener("change", handleFile)
+    let xCoeffs = []
+    let yCoeffs = []
+    let nPoints = 500
+    let time = 0
+    let dt = (2 * Math.PI) / nPoints
+    let path = []
+    let scale = 1
+    let offsetX = 0
+    let offsetY = 0
+    let canvas = document.getElementById("shapeCanvas")
+    let ctx = canvas.getContext("2d")
+    let animationComplete = false
+    function handleFile(evt) {
+      const file = evt.target.files[0]
+      if (!file) { alert("Please select a valid fourier_P.txt file."); return }
+      let reader = new FileReader()
+      reader.onload = function(e) { processFile(e.target.result) }
+      reader.readAsText(file)
+    }
+    function processFile(content) {
+      let lines = content.split("\n").map(l => l.trim()).filter(l => l.length > 0)
+      xCoeffs = []
+      yCoeffs = []
+      for (let i = 2; i < lines.length; i += 4) {
+        if (lines[i].includes("X: Magnitude") && lines[i+1].includes("Y: Magnitude")) {
+          let partsX = lines[i].split("=")
+          let partsY = lines[i+1].split("=")
+          let xMag = parseFloat(partsX[1].split(",")[0].trim())
+          let xPhase = parseFloat(partsX[2].trim())
+          let yMag = parseFloat(partsY[1].split(",")[0].trim())
+          let yPhase = parseFloat(partsY[2].trim())
+          xCoeffs.push({real: xMag * Math.cos(xPhase), imag: xMag * Math.sin(xPhase)})
+          yCoeffs.push({real: yMag * Math.cos(yPhase), imag: yMag * Math.sin(yPhase)})
+        }
+      }
+      let tValues = linspace(0, 2 * Math.PI, nPoints)
+      let xVals = []
+      let yVals = []
+      for (let j = 0; j < tValues.length; j++) {
+        let sumX = 0
+        let sumY = 0
+        for (let i = 0; i < xCoeffs.length; i++) {
+          let angle = i * tValues[j]
+          sumX += xCoeffs[i].real * Math.cos(angle) - xCoeffs[i].imag * Math.sin(angle)
+          sumY += yCoeffs[i].real * Math.cos(angle) - yCoeffs[i].imag * Math.sin(angle)
+        }
+        xVals.push(sumX)
+        yVals.push(sumY)
+      }
+      let minX = Math.min(...xVals)
+      let maxX = Math.max(...xVals)
+      let minY = Math.min(...yVals)
+      let maxY = Math.max(...yVals)
+      let scaleX = canvas.width * 0.8 / (maxX - minX)
+      let scaleY = canvas.height * 0.8 / (maxY - minY)
+      scale = Math.min(scaleX, scaleY)
+      offsetX = canvas.width / 2 - ((minX + maxX) / 2) * scale
+      offsetY = canvas.height / 2 + ((minY + maxY) / 2) * scale
+      path = []
+      time = 0
+      animationComplete = false
+      animate()
+    }
+    function linspace(start, end, num) {
+      let arr = []
+      let step = (end - start) / (num - 1)
+      for (let i = 0; i < num; i++) { arr.push(start + i * step) }
+      return arr
+    }
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      let currentX = 0
+      let currentY = 0
+      let baseX = offsetX
+      let baseY = offsetY
+      if (!animationComplete) {
+        for (let i = 0; i < xCoeffs.length; i++) {
+          let prevX = currentX
+          let prevY = currentY
+          let angle = i * time
+          let dx = xCoeffs[i].real * Math.cos(angle) - xCoeffs[i].imag * Math.sin(angle)
+          let dy = yCoeffs[i].real * Math.cos(angle) - yCoeffs[i].imag * Math.sin(angle)
+          currentX += dx
+          currentY += dy
+          let rX = Math.sqrt(xCoeffs[i].real * xCoeffs[i].real + xCoeffs[i].imag * xCoeffs[i].imag)
+          let rY = Math.sqrt(yCoeffs[i].real * yCoeffs[i].real + yCoeffs[i].imag * yCoeffs[i].imag)
+          let r = Math.sqrt(rX * rX + rY * rY)
+          ctx.beginPath()
+          ctx.arc(baseX + prevX * scale, baseY - prevY * scale, r * scale, 0, 2 * Math.PI)
+          ctx.strokeStyle = "rgba(153, 153, 153, 0.3)"
+          ctx.lineWidth = 1
+          ctx.stroke()
+          ctx.beginPath()
+          ctx.moveTo(baseX + prevX * scale, baseY - prevY * scale)
+          ctx.lineTo(baseX + currentX * scale, baseY - currentY * scale)
+          ctx.strokeStyle = "#ff5733"
+          ctx.lineWidth = 2
+          ctx.stroke()
+        }
+      }
+      let drawX = baseX + currentX * scale
+      let drawY = baseY - currentY * scale
+      path.unshift({x: drawX, y: drawY})
+      ctx.beginPath()
+      for (let i = 0; i < path.length; i++) {
+        if (i === 0) { ctx.moveTo(path[i].x, path[i].y) }
+        else { ctx.lineTo(path[i].x, path[i].y) }
+      }
+      ctx.strokeStyle = "#28a745"
+      ctx.lineWidth = 2
+      ctx.stroke()
+      if (!animationComplete) {
+        time += dt
+        if (time > 2 * Math.PI) {
+          animationComplete = true
+          time = 2 * Math.PI
+          // ✅ Clear only phasors and circles after completion
+          setTimeout(() => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.beginPath()
+            for (let i = 0; i < path.length; i++) {
+              if (i === 0) { ctx.moveTo(path[i].x, path[i].y) }
+              else { ctx.lineTo(path[i].x, path[i].y) }
+            }
+            ctx.strokeStyle = "#28a745"
+            ctx.lineWidth = 2
+            ctx.stroke()
+          }, 50)
+        } else {
+          requestAnimationFrame(animate)
+        }
+      }
+    }
+  </script>
+</body>
+</html>

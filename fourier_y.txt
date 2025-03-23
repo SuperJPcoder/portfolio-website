@@ -1,0 +1,202 @@
+Fourier Series Coefficients (First 50 terms):
+
+Term 1:
+  X: Magnitude = 0.0000, Phase = -0.0000
+  Y: Magnitude = 0.0000, Phase = -3.1416
+------------------------------
+Term 2:
+  X: Magnitude = 11.9476, Phase = 2.2885
+  Y: Magnitude = 13.9516, Phase = 0.6599
+------------------------------
+Term 3:
+  X: Magnitude = 4.2223, Phase = -2.1765
+  Y: Magnitude = 7.3735, Phase = -1.7022
+------------------------------
+Term 4:
+  X: Magnitude = 0.8047, Phase = 0.3836
+  Y: Magnitude = 5.5025, Phase = -0.3152
+------------------------------
+Term 5:
+  X: Magnitude = 6.1186, Phase = 0.4375
+  Y: Magnitude = 3.2248, Phase = 0.2391
+------------------------------
+Term 6:
+  X: Magnitude = 2.3311, Phase = -2.3092
+  Y: Magnitude = 2.0300, Phase = 2.5241
+------------------------------
+Term 7:
+  X: Magnitude = 4.7257, Phase = 1.9782
+  Y: Magnitude = 2.3443, Phase = 2.3000
+------------------------------
+Term 8:
+  X: Magnitude = 1.3925, Phase = 0.7898
+  Y: Magnitude = 0.6500, Phase = -0.2118
+------------------------------
+Term 9:
+  X: Magnitude = 0.9733, Phase = 1.7263
+  Y: Magnitude = 0.5305, Phase = 0.1692
+------------------------------
+Term 10:
+  X: Magnitude = 0.7770, Phase = -0.4196
+  Y: Magnitude = 1.0508, Phase = -0.4290
+------------------------------
+Term 11:
+  X: Magnitude = 1.3815, Phase = 0.7056
+  Y: Magnitude = 0.3017, Phase = 2.3321
+------------------------------
+Term 12:
+  X: Magnitude = 0.6352, Phase = 0.1024
+  Y: Magnitude = 1.2423, Phase = 1.3805
+------------------------------
+Term 13:
+  X: Magnitude = 1.1873, Phase = 1.5829
+  Y: Magnitude = 0.4250, Phase = 0.8093
+------------------------------
+Term 14:
+  X: Magnitude = 0.9863, Phase = -0.5626
+  Y: Magnitude = 0.5167, Phase = -2.0479
+------------------------------
+Term 15:
+  X: Magnitude = 0.1726, Phase = -2.7536
+  Y: Magnitude = 0.2757, Phase = -0.9664
+------------------------------
+Term 16:
+  X: Magnitude = 0.3943, Phase = -0.0684
+  Y: Magnitude = 0.3485, Phase = -0.3148
+------------------------------
+Term 17:
+  X: Magnitude = 0.0852, Phase = -2.7404
+  Y: Magnitude = 0.3286, Phase = 1.6373
+------------------------------
+Term 18:
+  X: Magnitude = 0.2785, Phase = -0.7840
+  Y: Magnitude = 0.1747, Phase = 2.0398
+------------------------------
+Term 19:
+  X: Magnitude = 0.2767, Phase = 2.8595
+  Y: Magnitude = 0.2882, Phase = 2.1266
+------------------------------
+Term 20:
+  X: Magnitude = 0.2189, Phase = 2.0516
+  Y: Magnitude = 0.0933, Phase = 1.4391
+------------------------------
+Term 21:
+  X: Magnitude = 0.1164, Phase = -0.0854
+  Y: Magnitude = 0.1312, Phase = 0.9938
+------------------------------
+Term 22:
+  X: Magnitude = 0.1380, Phase = -2.3546
+  Y: Magnitude = 0.2944, Phase = -0.4804
+------------------------------
+Term 23:
+  X: Magnitude = 0.5600, Phase = 2.1834
+  Y: Magnitude = 0.2121, Phase = 2.3009
+------------------------------
+Term 24:
+  X: Magnitude = 0.1329, Phase = 1.7374
+  Y: Magnitude = 0.3700, Phase = 1.2856
+------------------------------
+Term 25:
+  X: Magnitude = 0.0869, Phase = -2.4465
+  Y: Magnitude = 0.0746, Phase = 0.6833
+------------------------------
+Term 26:
+  X: Magnitude = 0.1668, Phase = 1.7067
+  Y: Magnitude = 0.1696, Phase = 0.0859
+------------------------------
+Term 27:
+  X: Magnitude = 0.2482, Phase = 1.3430
+  Y: Magnitude = 0.1367, Phase = -0.9788
+------------------------------
+Term 28:
+  X: Magnitude = 0.2176, Phase = 2.2822
+  Y: Magnitude = 0.1393, Phase = 2.0873
+------------------------------
+Term 29:
+  X: Magnitude = 0.3522, Phase = 1.4921
+  Y: Magnitude = 0.0423, Phase = -0.2145
+------------------------------
+Term 30:
+  X: Magnitude = 0.0808, Phase = -0.0000
+  Y: Magnitude = 0.0486, Phase = -1.1596
+------------------------------
+Term 31:
+  X: Magnitude = 0.1162, Phase = 3.1240
+  Y: Magnitude = 0.0667, Phase = 0.2815
+------------------------------
+Term 32:
+  X: Magnitude = 0.1001, Phase = 0.9315
+  Y: Magnitude = 0.0777, Phase = 0.7212
+------------------------------
+Term 33:
+  X: Magnitude = 0.4479, Phase = 0.9691
+  Y: Magnitude = 0.1450, Phase = 0.8951
+------------------------------
+Term 34:
+  X: Magnitude = 0.2144, Phase = 0.3028
+  Y: Magnitude = 0.0241, Phase = 0.6258
+------------------------------
+Term 35:
+  X: Magnitude = 0.2605, Phase = 2.9743
+  Y: Magnitude = 0.1603, Phase = 2.9423
+------------------------------
+Term 36:
+  X: Magnitude = 0.1519, Phase = 1.1069
+  Y: Magnitude = 0.0520, Phase = 1.5816
+------------------------------
+Term 37:
+  X: Magnitude = 0.1137, Phase = -0.5812
+  Y: Magnitude = 0.1131, Phase = 0.1013
+------------------------------
+Term 38:
+  X: Magnitude = 0.0650, Phase = 1.7381
+  Y: Magnitude = 0.1896, Phase = 0.2841
+------------------------------
+Term 39:
+  X: Magnitude = 0.1511, Phase = 0.2473
+  Y: Magnitude = 0.0491, Phase = -0.9924
+------------------------------
+Term 40:
+  X: Magnitude = 0.0682, Phase = 1.9168
+  Y: Magnitude = 0.2067, Phase = 2.4555
+------------------------------
+Term 41:
+  X: Magnitude = 0.1949, Phase = 2.1064
+  Y: Magnitude = 0.0614, Phase = 1.7807
+------------------------------
+Term 42:
+  X: Magnitude = 0.1041, Phase = 2.4351
+  Y: Magnitude = 0.0300, Phase = 2.5207
+------------------------------
+Term 43:
+  X: Magnitude = 0.0545, Phase = -1.0372
+  Y: Magnitude = 0.0778, Phase = -0.5523
+------------------------------
+Term 44:
+  X: Magnitude = 0.1077, Phase = 1.5197
+  Y: Magnitude = 0.0831, Phase = 1.0667
+------------------------------
+Term 45:
+  X: Magnitude = 0.2117, Phase = 1.2657
+  Y: Magnitude = 0.1390, Phase = 0.9675
+------------------------------
+Term 46:
+  X: Magnitude = 0.0276, Phase = 0.0097
+  Y: Magnitude = 0.0716, Phase = 2.2421
+------------------------------
+Term 47:
+  X: Magnitude = 0.0534, Phase = 1.6554
+  Y: Magnitude = 0.0436, Phase = 2.1054
+------------------------------
+Term 48:
+  X: Magnitude = 0.0891, Phase = 1.0362
+  Y: Magnitude = 0.0583, Phase = -0.0362
+------------------------------
+Term 49:
+  X: Magnitude = 0.0960, Phase = 1.6220
+  Y: Magnitude = 0.0598, Phase = 0.4653
+------------------------------
+Term 50:
+  X: Magnitude = 0.1354, Phase = -0.5304
+  Y: Magnitude = 0.1056, Phase = 0.2515
+------------------------------
