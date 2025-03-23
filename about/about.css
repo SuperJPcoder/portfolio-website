@@ -142,3 +142,70 @@ p {
         transform: scale(1);
     }
 }
+/* CPI Section */
+.cpi-section {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.cpi-box {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #00cc99;
+    color: #0a0a0a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+.hover-box {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #0a0a0a;
+    color: #00ffcc;
+    border: 1px solid #00cc99;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.hover-box:hover {
+    background-color: #00cc99;
+    color: #0a0a0a;
+    content: "CPI: it doesn't matter, just read further😑";
+}
+
+/* Rotating traits animation */
+#traits {
+    font-weight: bold;
+    color: #00ffcc;
+    animation: rotateTraits 7s infinite;
+}
+
+@keyframes rotateTraits {
+    0% {
+        content: "polite";
+    }
+    14% {
+        content: "humble";
+    }
+    28% {
+        content: "considerate";
+    }
+    42% {
+        content: "helpful";
+    }
+    56% {
+        content: "modest";
+    }
+    70% {
+        content: "mannered";
+    }
+    84% {
+        content: "cultured";
+    }
+    100% {
+        content: "polite";
+    }
+}
