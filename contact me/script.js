@@ -42,12 +42,12 @@
     var colors = ["#FF5733", "#00FF7F", "#1E90FF", "#FFD700", "#DA70D6", "#FF4500"];
     var platforms = ["LinkedIn", "Instagram", "GitHub", "Discord", "Email", "WhatsApp"];
     var platformLinks = [
-      "https://www.linkedin.com/",
-      "https://www.instagram.com/",
-      "https://github.com/",
-      "https://discord.com/",
-      "mailto:example@example.com",
-      "https://wa.me/",
+      "https://www.linkedin.com/in/priyank-jhaveri7",
+      "https://www.instagram.com/priyanksjhaveri",
+      "https://github.com/SuperJPcoder",
+      "https://discord.gg/1333468244094488636",
+      "mailto:priyanksjhaveri@gmail.com",
+      "https://wa.me/9867839671",
     ];
   
     for (var i = 0; i < 6; i++) {
@@ -122,4 +122,3 @@
       })(i);
     }
   })();
-  
