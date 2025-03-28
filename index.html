@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Priyank Jhaveri</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/katex.min.css">
   <style>
     body {
       margin: 0;
@@ -21,12 +22,28 @@
     }
     #loading {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 18px;
+      font-size: 24px;
       color: #00FFAA;
       letter-spacing: 2px;
       position: absolute;
       bottom: 8%;
       animation: pulse 1.5s infinite ease-in-out;
+    }
+    #equations {
+      position: absolute;
+      top: 10%;
+      right: 5%;
+      color: #00FFAA;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .equation {
+      margin-bottom: 12px;
     }
     @keyframes pulse {
       0% { opacity: 0.6; }
@@ -35,11 +52,35 @@
     }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/katex.min.js"></script>
 </head>
 <body>
   <canvas id="graphCanvas"></canvas>
   <div id="loading">LOADING</div>
+  <div id="equations"></div>
   <script>
+    const equationsDiv = document.getElementById('equations')
+    let mouseTimeout
+    function showEquations() {
+      equationsDiv.style.opacity = 1
+      clearTimeout(mouseTimeout)
+      mouseTimeout = setTimeout(() => {
+        equationsDiv.style.opacity = 0
+      }, 1000)
+    }
+    document.addEventListener('mousemove', showEquations)
+    const equations = [
+      "y = \\pm \\frac{12x}{7}",
+      "y = \\pm 1 \\pm \\sqrt{\\frac{1}{16} - (x \\pm \\frac{1}{3})^2}",
+      "y = \\pm 2.4x \\pm 1.2",
+      "y = \\pm 1 \\pm \\sqrt{\\frac{121}{144} - x^2}"
+    ]
+    equations.forEach(eq => {
+      const eqDiv = document.createElement('div')
+      eqDiv.className = 'equation'
+      katex.render(eq, eqDiv, { throwOnError: false })
+      equationsDiv.appendChild(eqDiv)
+    })
     const canvas2D = document.getElementById('graphCanvas')
     const ctx = canvas2D.getContext('2d')
     canvas2D.width = window.innerWidth
@@ -53,21 +94,9 @@
       const screenX = originX + x * unit
       const screenY = originY - y * unit
       ctx.strokeStyle = '#00FFAA'
-      ctx.lineWidth = 0.6
-      ctx.shadowColor = '#00FFAA'
-      ctx.shadowBlur = 3
+      ctx.lineWidth = 1.5
       ctx.lineTo(screenX, screenY)
       ctx.stroke()
-    }
-    function drawGlow(x, y, size = 3.2, glow = 18) {
-      const screenX = originX + x * unit
-      const screenY = originY - y * unit
-      ctx.beginPath()
-      ctx.arc(screenX, screenY, size, 0, 2 * Math.PI)
-      ctx.fillStyle = '#00FFAA'
-      ctx.shadowColor = '#00FFAA'
-      ctx.shadowBlur = glow
-      ctx.fill()
     }
     let phase = 0
     let t = 0
@@ -170,7 +199,6 @@
         const x = t
         const y = (12 * x) / 7
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= endXLine0) { phase = 1; t = endXArcRight }
         else { t += speed }
       }
@@ -180,7 +208,6 @@
         let y = 1
         if (underSqrt >= 0) { y += Math.sqrt(underSqrt) }
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t <= endXArcLeft) { phase = 2; t = endXArcLeft }
         else { t -= speed }
       }
@@ -188,7 +215,6 @@
         const x = t
         const y = -2.4 * x + 1.2
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= endXLine2) { phase = 3; t = endXLine2 }
         else { t += speed }
       }
@@ -198,7 +224,6 @@
         let y = -1
         if (underSqrt >= 0) { y = -Math.sqrt(underSqrt) - 1 }
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t <= endXSemicircle) { phase = 4; t = endXSemicircle }
         else { t -= speed }
       }
@@ -206,7 +231,6 @@
         const x = t
         const y = 2.4 * x + 1.2
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= -1 / 3 + 0.25) { phase = 5; t = -1 / 3 + 0.25 }
         else { t += speed }
       }
@@ -216,7 +240,6 @@
         let y = 1
         if (underSqrt >= 0) { y += Math.sqrt(underSqrt) }
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t <= endXLine4) { phase = 6; t = endXLine4 }
         else { t -= speed }
       }
@@ -224,7 +247,6 @@
         const x = t
         const y = -12 * x / 7
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= endXArcRight6) { phase = 7; t = endXArcRight6 }
         else { t += speed }
       }
@@ -234,7 +256,6 @@
         let y = -1
         if (underSqrt >= 0) { y -= Math.sqrt(underSqrt) }
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t <= endXArcLeft6) { phase = 8; t = endXArcLeft6 }
         else { t -= speed }
       }
@@ -242,7 +263,6 @@
         const x = t
         const y = 2.4 * x - 1.2
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= endXLine8) { phase = 9; t = endXLine8 }
         else { t += speed }
       }
@@ -252,7 +272,6 @@
         let y = 1
         if (underSqrt >= 0) { y = Math.sqrt(underSqrt) + 1 }
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t <= endXSemicircleFinal) { phase = 10; t = endXSemicircleFinal }
         else { t -= speed }
       }
@@ -260,7 +279,6 @@
         const x = t
         const y = -2.4 * x - 1.2
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= endXLine10) { phase = 11; t = endXLine10 }
         else { t += speed }
       }
@@ -270,7 +288,6 @@
         let y = -1
         if (underSqrt >= 0) { y -= Math.sqrt(underSqrt) }
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t <= endXArcFinal) { phase = 12; t = endXArcFinal }
         else { t -= speed }
       }
@@ -278,7 +295,6 @@
         const x = t
         const y = (12 * x) / 7
         pathPoints.push({ x, y })
-        drawGlow(x, y)
         if (t >= endXFinalLine) { phase = 13 }
         else { t += speed }
       }
@@ -290,7 +306,7 @@
     let dots = 0
     setInterval(() => {
       dots = (dots + 1) % 4
-      loadingText.innerText = "HYPNOTIZING" + ".".repeat(dots)
+      loadingText.innerText = "LOADING" + ".".repeat(dots)
     }, 500)
   </script>
 </body>
