@@ -122,25 +122,35 @@
     function collapseToDot3D(scene, plane, camera, renderer) {
       const collapseDuration = 90
       let collapseFrame = 0
+      const sphereGeometry = new THREE.SphereGeometry(0.04, 32, 32)
+      const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FF00, emissive: 0x00FF00, emissiveIntensity: 0 })
+      const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+      sphere.scale.set(0, 0, 0)
+      scene.add(sphere)
+      const glowGeometry = new THREE.SphereGeometry(0.08, 32, 32)
+      const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00, transparent: true, opacity: 0 })
+      const glowSphere = new THREE.Mesh(glowGeometry, glowMaterial)
+      glowSphere.scale.set(0, 0, 0)
+      scene.add(glowSphere)
+      let pointAnimFrame = 0
+      const pointAnimDuration = 60
       function collapseAnimation() {
         const progress = easeOut(collapseFrame / collapseDuration)
         plane.scale.x = 1 - progress
         plane.scale.y = 1 - progress
         plane.scale.z = 1 - progress
+        const pointProgress = easeOut(Math.min(collapseFrame / collapseDuration, pointAnimFrame / pointAnimDuration))
+        sphere.scale.set(pointProgress, pointProgress, pointProgress)
+        sphere.material.emissiveIntensity = pointProgress
+        glowSphere.scale.set(pointProgress, pointProgress, pointProgress)
+        glowSphere.material.opacity = pointProgress * 0.3
         renderer.render(scene, camera)
         collapseFrame++
+        pointAnimFrame++
         if (collapseFrame <= collapseDuration) {
           requestAnimationFrame(collapseAnimation)
         } else {
           scene.remove(plane)
-          const sphereGeometry = new THREE.SphereGeometry(0.04, 32, 32)
-          const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FF00, emissive: 0x00FF00, emissiveIntensity: 1 })
-          const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
-          scene.add(sphere)
-          const glowGeometry = new THREE.SphereGeometry(0.08, 32, 32)
-          const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00, transparent: true, opacity: 0.3 })
-          const glowSphere = new THREE.Mesh(glowGeometry, glowMaterial)
-          scene.add(glowSphere)
           setTimeout(() => {
             window.location.href = '../portfolio-website/landing/landing.html'
           }, 800)
