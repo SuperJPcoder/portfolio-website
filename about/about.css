@@ -9,34 +9,24 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.name-animation {
+.video-container {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
-.name-animation svg text {
-  font-family: 'Poppins', sans-serif;
-  font-size: 120px;
-  fill: none;
-  stroke: #00ffcc;
-  stroke-width: 2;
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-  animation: drawName 3s linear forwards;
-}
-@keyframes drawName {
-  to {
-      stroke-dashoffset: 0;
-  }
+video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 .container {
   opacity: 0;
-  transform: scale(0.9);
-  transition: all 1s ease-in-out;
+  transform: scale(0.95);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
   display: block;
   max-width: 900px;
   margin: 20px auto;
@@ -48,6 +38,10 @@ body {
 .container.show {
   opacity: 1;
   transform: scale(1);
+}
+
+.hidden {
+  display: none;
 }
 h1 {
   font-size: 54px;
@@ -90,34 +84,6 @@ a:hover {
   color: #0a0a0a;
   transform: scale(1.05);
 }
-.hidden {
-  display: none;
-}
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-      transform: scale(0.98);
-  }
-  to {
-      opacity: 1;
-      transform: scale(1);
-  }
-}
-#traits {
-  font-weight: bold;
-  color: #00ffcc;
-  animation: rotateTraits 7s infinite;
-}
-@keyframes rotateTraits {
-  0% { content: "polite"; }
-  14% { content: "humble"; }
-  28% { content: "considerate"; }
-  42% { content: "helpful"; }
-  56% { content: "modest"; }
-  70% { content: "mannered"; }
-  84% { content: "cultured"; }
-  100% { content: "polite"; }
-}
 .about-section ul {
   list-style: none;
   padding: 0;
@@ -130,6 +96,11 @@ a:hover {
   line-height: 1.8;
   color: #d1f4f2;
   margin-bottom: 8px;
+}
+#traits {
+  font-weight: bold;
+  color: #00ffcc;
+  animation: rotateTraits 7s infinite;
 }
 #traits-container {
   display: inline-block;
@@ -165,4 +136,3 @@ a:hover {
   color: #0a0a0a;
   transform: scale(1.05);
 }
-

@@ -5,9 +5,12 @@ setInterval(() => {
   traitIndex = (traitIndex + 1) % traitsList.length;
 }, 1000);
 
-window.onload = () => {
+const video = document.getElementById('intro-video');
+video.onended = () => {
+  document.querySelector('.video-container').style.display = 'none';
+  const container = document.querySelector('.container');
+  container.classList.remove('hidden');
   setTimeout(() => {
-    document.querySelector('.name-animation').style.display = 'none';
-    document.querySelector('.container').classList.add('show');
-  }, 3200);
+    container.classList.add('show');
+  }, 100); 
 };
