@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #0d1117;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    text-align: center;
+    color: #00ffcc;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+    font-size: 3rem;
+    text-shadow: 0 0 20px rgba(0, 255, 204, 0.9);
+  }
+  
+  .email-box {
+    background: rgba(0, 255, 204, 0.1);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px;
+    width: 350px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 5px 25px rgba(0, 255, 204, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .email-box:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 45px rgba(0, 255, 204, 0.7);
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    color: #00ffcc;
+  }
+  
+  p {
+    margin-bottom: 15px;
+    color: #b3f0e6;
+    font-size: 1rem;
+  }
+  
+  button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #00ffcc;
+    color: #0d1117;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background: #00e6b8;
+    transform: scale(1.1);
+  }
+  #back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    color: #00ffcc;
+    text-decoration: none;
+    padding: 8px 12px;
+    border: 1px solid #00cc99;
+    border-radius: 8px;
+    background-color: rgba(0, 255, 204, 0.1);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  #back-button:hover {
+    background-color: #00cc99;
+    color: #0a0a0a;
+    transform: scale(1.05);
+  }
+  

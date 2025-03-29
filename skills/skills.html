@@ -10,6 +10,26 @@ body {overflow-y: auto; position: relative; min-height: 100vh; background-color:
 canvas {position: fixed; top: 0; left: 0; z-index: -1}
 .scroll-container {position: relative; width: 100%; min-height: 100vh; overflow-y: auto; padding: 2rem}
 .container {position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center}
+#back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  color: #00ffcc;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #00cc99;
+  border-radius: 8px;
+  background-color: rgba(0, 255, 204, 0.1);
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+#back-button:hover {
+  background-color: #00cc99;
+  color: #0a0a0a;
+  transform: scale(1.05);
+}
+
 header {margin-bottom: 2rem; text-align: center}
 header h1 {font-size: 3.5rem; letter-spacing: 0.1rem; color: #00ffcc; text-shadow: 0 0 20px #00ffcc}
 header p {font-size: 1.2rem; color: #cfcfcf; margin-top: 0.5rem}
@@ -34,6 +54,8 @@ header h1 {font-size: 2.5rem}
 </style>
 </head>
 <body>
+  <a href="../landing/landing.html" id="back-button">&#8592; Back</a>
+
 <canvas id="matrix"></canvas>
 <div class="scroll-container">
   <div class="container">
