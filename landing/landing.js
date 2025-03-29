@@ -96,22 +96,24 @@ ctx.moveTo(centerX, centerY);
 ctx.lineTo(centerX + x, centerY - y);
 ctx.stroke();
 drawTrace();
-if (theta >= Math.PI / 2 && !labelsShown.about) {
-quadrantLabels.about.classList.remove('hidden');
-labelsShown.about = true;
+const earlyOffset = 1.22;
+if (theta >= Math.PI / 2 - earlyOffset && !labelsShown.about) {
+  quadrantLabels.about.classList.remove('hidden');
+  labelsShown.about = true;
 }
-if (theta >= Math.PI && !labelsShown.projects) {
-quadrantLabels.projects.classList.remove('hidden');
-labelsShown.projects = true;
+if (theta >= Math.PI - earlyOffset && !labelsShown.projects) {
+  quadrantLabels.projects.classList.remove('hidden');
+  labelsShown.projects = true;
 }
-if (theta >= (3 * Math.PI) / 2 && !labelsShown.skills) {
-quadrantLabels.skills.classList.remove('hidden');
-labelsShown.skills = true;
+if (theta >= (3 * Math.PI) / 2 - earlyOffset && !labelsShown.skills) {
+  quadrantLabels.skills.classList.remove('hidden');
+  labelsShown.skills = true;
 }
-if (theta >= 2 * Math.PI && !labelsShown.contact) {
-quadrantLabels.contact.classList.remove('hidden');
-labelsShown.contact = true;
+if (theta >= 2 * Math.PI - earlyOffset && !labelsShown.contact) {
+  quadrantLabels.contact.classList.remove('hidden');
+  labelsShown.contact = true;
 }
+
 }
 function drawTrace() {
 if (tracedPoints.length > 1) {
