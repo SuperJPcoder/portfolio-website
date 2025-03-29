@@ -9,22 +9,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIndex = -1;
     const directories = {
         'projects': ['dev', 'algos', 'ai-ml', 'thinking'],
-        'dev': ['AdoPet', 'Inventora', 'Portfolio'],
-        'algos': ['SpatialFourier', 'TIR_crypto'],
+        'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps'],
+        'algos': ['SpatialFourier', 'TIR_crypto', 'AutoAdjustLight'],
         'ai-ml': ['SuperXO', 'AlphaZeroGo'],
         'thinking': ['EulerProof', 'Relativity']
     };
 
     const projectDetails = {
-        'AdoPet': 'Dummy description for Project A.',
-        'Inventora': 'Dummy description for Project B.',
-        'Portfolio': 'Dummy description for Project C.',
-        'SpatialFourier': 'Dummy description for Project D.',
-        'TIR_crypto': 'Dummy description for Project E.',
-        'SuperXO': 'Dummy description for Project F.',
-        'AlphaZeroGo': 'Dummy description for Project G.',
-        'EulerProof': 'Dummy description for Project H.',
-        'Relativity': 'Dummy description for Project G.'
+        'AdoPet': 'A pet adoption portal designed with very interactive animated frontend and a robust backend. Know more @ https://github.com/SuperJPcoder/Adopet',
+        'Inventora': 'An inventory management system for general stores with a smooth UI and a database with all essesntial CRUD functionalites + more. Know more @ https://github.com/SuperJPcoder/Inventory-Management-System',
+        'Portfolio': 'My portfolio website I made for some light fun. (YOU ARE SEEING IT RN). Know more @ https://github.com/SuperJPcoder/portfolio-website',
+        'VJTI-Maps': 'A QGIS based project displaying the entire map of VJTI with easy to find places. Know more @ https://github.com/SuperJPcoder/VJTI-map-QGIS',
+        'SpatialFourier': 'A GIS project which can trandsform, store and render spatial data using fourier series, and execute spatial queries. Know more @ https://github.com/SuperJPcoder/SpatialStorageFourier',
+        'AutoAdjustLight': 'A digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp',
+        'TIR_crypto': 'A project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
+        'SuperXO': 'A superXO game with AI opponoent using minimax. Game has strategis depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
+        'AlphaZeroGo': 'A reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
+        'EulerProof': 'A beautiful proof I came up with while playing with integrals, unravelling connections in math. Know more @ https://github.com/SuperJPcoder/Euler_Research',
+        'Relativity': 'A new perspective and interpretation of the explaination for relativity given by Lewis Epstein in his book `Relativty Visualized`. Know more @ https://github.com/SuperJPcoder/Relativity'
     };
 
     const availableCommands = {
@@ -39,9 +41,14 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function printToTerminal(text, color = '#00ffcc') {
-        output.innerHTML += `\n<span style="color: ${color}">${text}</span>`;
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const formattedText = text.replace(urlRegex, (url) => {
+            return `<a href="${url}" target="_blank" style="color: #66ff66; text-decoration: underline;">${url}</a>`;
+        });
+        output.innerHTML += `\n<span style="color: ${color}">${formattedText}</span>`;
         terminal.scrollTop = terminal.scrollHeight;
     }
+    
 
     function updatePrompt() {
         prompt.innerHTML = `<span style="color: #00ffcc">~${currentDir}$</span>`;
