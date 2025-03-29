@@ -3,60 +3,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const output = document.getElementById('output');
     const input = document.getElementById('input');
     const prompt = document.getElementById('prompt');
-  
+    
     let currentDir = '~projects';
     let commandHistory = [];
     let historyIndex = -1;
     const directories = {
         'projects': ['dev', 'algos', 'ai-ml', 'thinking'],
-        'dev': ['AdoPet', 'Inventora'],
-        'algos': ['Project C', 'Project D'],
-        'ai-ml': ['Project E', 'Project F'],
-        'thinking': ['Project G', 'Project H']
+        'dev': ['AdoPet', 'Inventora', 'Portfolio'],
+        'algos': ['SpatialFourier', 'TIR_crypto'],
+        'ai-ml': ['SuperXO', 'AlphaZeroGo'],
+        'thinking': ['EulerProof', 'Relativity']
     };
-  
+
     const projectDetails = {
         'AdoPet': 'Dummy description for Project A.',
         'Inventora': 'Dummy description for Project B.',
-        'Project C': 'Dummy description for Project C.',
-        'Project D': 'Dummy description for Project D.',
-        'Project E': 'Dummy description for Project E.',
-        'Project F': 'Dummy description for Project F.',
-        'Project G': 'Dummy description for Project G.',
-        'Project H': 'Dummy description for Project H.'
+        'Portfolio': 'Dummy description for Project C.',
+        'SpatialFourier': 'Dummy description for Project D.',
+        'TIR_crypto': 'Dummy description for Project E.',
+        'SuperXO': 'Dummy description for Project F.',
+        'AlphaZeroGo': 'Dummy description for Project G.',
+        'EulerProof': 'Dummy description for Project H.',
+        'Relativity': 'Dummy description for Project G.'
     };
-  
+
     const availableCommands = {
         'ls': 'List directories and projects',
         'cd [name]': 'Navigate to a directory',
         'cd ..': 'Go back to the previous directory',
         'cat [project]': 'Show project details',
         'clear': 'Clear the terminal',
-        'help': 'List available commands',
+        'help': 'List available commands (use Tab for autocomplete)',
         'pwd': 'Show current directory',
         'exit': 'Return to navigation'
     };
-  
+
     function printToTerminal(text, color = '#00ffcc') {
         output.innerHTML += `\n<span style="color: ${color}">${text}</span>`;
         terminal.scrollTop = terminal.scrollHeight;
     }
-  
+
     function updatePrompt() {
         prompt.innerHTML = `<span style="color: #00ffcc">~${currentDir}$</span>`;
     }
-  
+
     function showHelp() {
         printToTerminal('Available commands:', '#ffff66');
         for (let cmd in availableCommands) {
             printToTerminal(`${cmd} - ${availableCommands[cmd]}`, '#ffff66');
         }
     }
-  
+
     function processCommand(command) {
         const args = command.split(' ');
         const cmd = args[0];
-  
+
         switch (cmd) {
             case 'ls':
                 const dirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     printToTerminal('No items found.', '#ff6666');
                 }
                 break;
-  
+
             case 'cd':
                 if (args[1]) {
                     const target = args[1];
@@ -89,23 +90,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     printToTerminal('Usage: cd [name]', '#ff6666');
                 }
                 break;
-  
+
             case 'cat':
-                if (args[1] && projectDetails[args[1]]) {
+                const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
+                if (args[1] && directories[currentDirKey]?.includes(args[1]) && projectDetails[args[1]]) {
                     printToTerminal(`\n${args[1]}: ${projectDetails[args[1]]}`, '#66ff66');
                 } else {
                     printToTerminal('cat: Invalid project name or missing argument.', '#ff6666');
                 }
                 break;
-  
+
             case 'clear':
                 output.innerHTML = '';
                 break;
-  
+
             case 'help':
                 showHelp();
                 break;
-  
+
             case 'pwd':
                 printToTerminal(currentDir, '#00ffff');
                 break;
@@ -116,19 +118,53 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.location.href = '../landing/landing.html';
                 }, 1000);
                 break;
-  
+
             default:
                 printToTerminal(`Command not found: ${cmd}`, '#ff6666');
                 break;
         }
     }
-  
-    function autoComplete(inputValue) {
-        const dirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
-        const possibilities = directories[dirKey].filter(item => item.startsWith(inputValue));
-        return possibilities.length === 1 ? possibilities[0] : null;
+
+    function showAutoCompleteSuggestions(suggestions) {
+        let suggestionBox = document.getElementById('suggestions');
+        if (!suggestionBox) {
+            suggestionBox = document.createElement('div');
+            suggestionBox.id = 'suggestions';
+            suggestionBox.style.position = 'absolute';
+            suggestionBox.style.background = '#000';
+            suggestionBox.style.color = '#00ffcc';
+            suggestionBox.style.opacity = '0.7';
+            suggestionBox.style.padding = '5px';
+            suggestionBox.style.border = '1px solid #00ffcc';
+            suggestionBox.style.zIndex = '10';
+            terminal.appendChild(suggestionBox);
+        }
+        suggestionBox.innerHTML = suggestions.map(item => `<div>${item}</div>`).join('');
+        suggestionBox.style.display = suggestions.length ? 'block' : 'none';
     }
-  
+
+    function autoComplete(inputValue) {
+        const args = inputValue.split(' ');
+        const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
+
+        if (args.length === 2 && args[0] === 'cat') {
+            const possibilities = directories[currentDirKey]?.filter(item => item.startsWith(args[1])) || [];
+            showAutoCompleteSuggestions(possibilities);
+            return possibilities.length === 1 ? `cat ${possibilities[0]}` : inputValue;
+        }
+        
+        if (args.length === 2 && args[0] === 'cd' && currentDir === '~projects') {
+            const possibilities = directories['projects'].filter(item => item.startsWith(args[1]));
+            showAutoCompleteSuggestions(possibilities);
+            return possibilities.length === 1 ? `cd ${possibilities[0]}` : inputValue;
+        }
+
+        if (inputValue === '') {
+            showAutoCompleteSuggestions([]);
+        }
+        return inputValue;
+    }
+
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const command = input.value.trim();
@@ -139,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 processCommand(command);
             }
             input.value = '';
+            showAutoCompleteSuggestions([]);
         } else if (e.key === 'ArrowUp') {
             if (historyIndex > 0) {
                 historyIndex--;
@@ -154,14 +191,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (e.key === 'Tab') {
             e.preventDefault();
-            const autoCompleteResult = autoComplete(input.value.trim());
-            if (autoCompleteResult) {
-                input.value = autoCompleteResult;
-            }
+            input.value = autoComplete(input.value.trim());
+        } else {
+            autoComplete(input.value.trim());
         }
     });
-  
+
     updatePrompt();
-    printToTerminal('Lets explore! Type `help` to begin.', '#ffff66');
-  });
-  
+    printToTerminal('Lets explore! Type `help` to begin. Use Tab for autocomplete.', '#ffff66');
+});
