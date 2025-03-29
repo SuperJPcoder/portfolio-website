@@ -47,7 +47,7 @@
       "https://github.com/SuperJPcoder",
       "https://discord.gg/1333468244094488636",
       "mailto:priyanksjhaveri@gmail.com",
-      "https://wa.me/9867839671",
+      "whatsapp.html",
     ];
   
     for (var i = 0; i < 6; i++) {
