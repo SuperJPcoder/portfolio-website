@@ -23,7 +23,7 @@
     #loading {
       font-family: 'Courier New', Courier, monospace;
       font-size: 24px;
-      color: #00FFAA;
+      color: #00FFCC;
       letter-spacing: 2px;
       position: absolute;
       bottom: 8%;
@@ -33,7 +33,7 @@
       position: absolute;
       top: 10%;
       right: 5%;
-      color: #00FFAA;
+      color: #00FFCC;
       font-size: 16px;
       font-family: 'Courier New', Courier, monospace;
       display: flex;
@@ -93,7 +93,7 @@
     function drawPath(x, y) {
       const screenX = originX + x * unit
       const screenY = originY - y * unit
-      ctx.strokeStyle = '#00FFAA'
+      ctx.strokeStyle = '#00FFCC'
       ctx.lineWidth = 1.5
       ctx.lineTo(screenX, screenY)
       ctx.stroke()
@@ -123,12 +123,12 @@
       const collapseDuration = 90
       let collapseFrame = 0
       const sphereGeometry = new THREE.SphereGeometry(0.04, 32, 32)
-      const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FF00, emissive: 0x00FF00, emissiveIntensity: 0 })
+      const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x00FFCC, emissive: 0x00FFCC, emissiveIntensity: 0 })
       const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
       sphere.scale.set(0, 0, 0)
       scene.add(sphere)
       const glowGeometry = new THREE.SphereGeometry(0.08, 32, 32)
-      const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00, transparent: true, opacity: 0 })
+      const glowMaterial = new THREE.MeshBasicMaterial({ color: 0x00FFCC, transparent: true, opacity: 0 })
       const glowSphere = new THREE.Mesh(glowGeometry, glowMaterial)
       glowSphere.scale.set(0, 0, 0)
       scene.add(glowSphere)
