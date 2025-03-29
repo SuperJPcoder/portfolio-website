@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multiple Fourier Shape Animation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #000;
+      text-align: center;
+      color: #fff;
+    }
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .canvas-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 0;
+    }
+    canvas {
+      background-color: #000;
+      margin: 0;
+    }
+    .file-inputs {
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    input[type="file"] {
+      margin-top: 5px;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h2>Fourier Shape Reconstruction for 7 Letters</h2>
+  <div class="file-inputs">
+    <input type="file" id="fileInput0" accept=".txt">
+    <input type="file" id="fileInput1" accept=".txt">
+    <input type="file" id="fileInput2" accept=".txt">
+    <input type="file" id="fileInput3" accept=".txt">
+    <input type="file" id="fileInput4" accept=".txt">
+    <input type="file" id="fileInput5" accept=".txt">
+    <input type="file" id="fileInput6" accept=".txt">
+  </div>
+  <button id="startButton" disabled>Start</button>
+  <div class="canvas-container">
+    <canvas id="shapeCanvas0" width="200" height="200"></canvas>
+    <canvas id="shapeCanvas1" width="200" height="200"></canvas>
+    <canvas id="shapeCanvas2" width="200" height="200"></canvas>
+    <canvas id="shapeCanvas3" width="200" height="200"></canvas>
+    <canvas id="shapeCanvas4" width="200" height="200"></canvas>
+    <canvas id="shapeCanvas5" width="200" height="200"></canvas>
+    <canvas id="shapeCanvas6" width="200" height="200"></canvas>
+  </div>
+  <script>
+    let xCoeffsList = []
+    let yCoeffsList = []
+    let pathList = []
+    let animationCompleteList = []
+    let timeList = []
+    let nPoints = 500
+    let dt = (2 * Math.PI) / nPoints
+    let scaleList = []
+    let offsetXList = []
+    let offsetYList = []
+    let canvases = []
+    let ctxList = []
+    let uploadedFiles = Array(7).fill(false)
+
+    for (let i = 0; i < 7; i++) {
+      document.getElementById(`fileInput${i}`).addEventListener("change", function(evt) {
+        handleFile(evt, i)
+      })
+      canvases[i] = document.getElementById(`shapeCanvas${i}`)
+      ctxList[i] = canvases[i].getContext("2d")
+      xCoeffsList[i] = []
+      yCoeffsList[i] = []
+      pathList[i] = []
+      animationCompleteList[i] = false
+      timeList[i] = 0
+      scaleList[i] = 1
+      offsetXList[i] = 0
+      offsetYList[i] = 0
+    }
+
+    document.getElementById("startButton").addEventListener("click", function() {
+      if (uploadedFiles.every(v => v)) {
+        startAnimation()
+      }
+    })
+
+    function handleFile(evt, index) {
+      const file = evt.target.files[0]
+      if (!file) {
+        alert(`Please select a valid fourier_P.txt file for letter ${index + 1}`)
+        return
+      }
+      let reader = new FileReader()
+      reader.onload = function(e) {
+        processFile(e.target.result, index)
+      }
+      reader.readAsText(file)
+    }
+
+    function processFile(content, index) {
+      let lines = content.split("\n").map(l => l.trim()).filter(l => l.length > 0)
+      xCoeffsList[index] = []
+      yCoeffsList[index] = []
+      for (let i = 2; i < lines.length; i += 4) {
+        if (lines[i].includes("X: Magnitude") && lines[i + 1].includes("Y: Magnitude")) {
+          let partsX = lines[i].split("=")
+          let partsY = lines[i + 1].split("=")
+          let xMag = parseFloat(partsX[1].split(",")[0].trim())
+          let xPhase = parseFloat(partsX[2].trim())
+          let yMag = parseFloat(partsY[1].split(",")[0].trim())
+          let yPhase = parseFloat(partsY[2].trim())
+          xCoeffsList[index].push({ real: xMag * Math.cos(xPhase), imag: xMag * Math.sin(xPhase) })
+          yCoeffsList[index].push({ real: yMag * Math.cos(yPhase), imag: yMag * Math.sin(yPhase) })
+        }
+      }
+      let tValues = linspace(0, 2 * Math.PI, nPoints)
+      let xVals = []
+      let yVals = []
+      for (let j = 0; j < tValues.length; j++) {
+        let sumX = 0
+        let sumY = 0
+        for (let i = 0; i < xCoeffsList[index].length; i++) {
+          let angle = i * tValues[j]
+          sumX += xCoeffsList[index][i].real * Math.cos(angle) - xCoeffsList[index][i].imag * Math.sin(angle)
+          sumY += yCoeffsList[index][i].real * Math.cos(angle) - yCoeffsList[index][i].imag * Math.sin(angle)
+        }
+        xVals.push(sumX)
+        yVals.push(sumY)
+      }
+      let minX = Math.min(...xVals)
+      let maxX = Math.max(...xVals)
+      let minY = Math.min(...yVals)
+      let maxY = Math.max(...yVals)
+      let scaleX = canvases[index].width * 0.8 / (maxX - minX)
+      let scaleY = canvases[index].height * 0.8 / (maxY - minY)
+      scaleList[index] = Math.min(scaleX, scaleY)
+      offsetXList[index] = canvases[index].width / 2 - ((minX + maxX) / 2) * scaleList[index]
+      offsetYList[index] = canvases[index].height / 2 + ((minY + maxY) / 2) * scaleList[index]
+      pathList[index] = []
+      timeList[index] = 0
+      animationCompleteList[index] = false
+      uploadedFiles[index] = true
+      checkAllFilesUploaded()
+    }
+
+    function checkAllFilesUploaded() {
+      if (uploadedFiles.every(v => v)) {
+        document.getElementById("startButton").disabled = false
+      }
+    }
+
+    function linspace(start, end, num) {
+      let arr = []
+      let step = (end - start) / (num - 1)
+      for (let i = 0; i < num; i++) {
+        arr.push(start + i * step)
+      }
+      return arr
+    }
+
+    function startAnimation() {
+      for (let i = 0; i < 7; i++) {
+        animate(i)
+      }
+    }
+
+    function animate(index) {
+      if (animationCompleteList[index]) {
+        clearPhasorsAndDrawPath(index)
+        return
+      }
+      ctxList[index].clearRect(0, 0, canvases[index].width, canvases[index].height)
+      let currentX = 0
+      let currentY = 0
+      let baseX = offsetXList[index]
+      let baseY = offsetYList[index]
+      for (let i = 0; i < xCoeffsList[index].length; i++) {
+        let prevX = currentX
+        let prevY = currentY
+        let angle = i * timeList[index]
+        let dx = xCoeffsList[index][i].real * Math.cos(angle) - xCoeffsList[index][i].imag * Math.sin(angle)
+        let dy = yCoeffsList[index][i].real * Math.cos(angle) - yCoeffsList[index][i].imag * Math.sin(angle)
+        currentX += dx
+        currentY += dy
+        let rX = Math.sqrt(xCoeffsList[index][i].real * xCoeffsList[index][i].real + xCoeffsList[index][i].imag * xCoeffsList[index][i].imag)
+        let rY = Math.sqrt(yCoeffsList[index][i].real * yCoeffsList[index][i].real + yCoeffsList[index][i].imag * yCoeffsList[index][i].imag)
+        let r = Math.sqrt(rX * rX + rY * rY)
+        ctxList[index].beginPath()
+        ctxList[index].arc(baseX + prevX * scaleList[index], baseY - prevY * scaleList[index], r * scaleList[index], 0, 2 * Math.PI)
+        ctxList[index].strokeStyle = "rgba(255, 255, 255, 0.3)"
+        ctxList[index].lineWidth = 1
+        ctxList[index].stroke()
+        ctxList[index].beginPath()
+        ctxList[index].moveTo(baseX + prevX * scaleList[index], baseY - prevY * scaleList[index])
+        ctxList[index].lineTo(baseX + currentX * scaleList[index], baseY - currentY * scaleList[index])
+        ctxList[index].strokeStyle = "#ff00ff"
+        ctxList[index].lineWidth = 2
+        ctxList[index].stroke()
+      }
+      let drawX = baseX + currentX * scaleList[index]
+      let drawY = baseY - currentY * scaleList[index]
+      pathList[index].unshift({ x: drawX, y: drawY })
+      ctxList[index].beginPath()
+      for (let i = 0; i < pathList[index].length; i++) {
+        if (i === 0) {
+          ctxList[index].moveTo(pathList[index][i].x, pathList[index][i].y)
+        } else {
+          ctxList[index].lineTo(pathList[index][i].x, pathList[index][i].y)
+        }
+      }
+      ctxList[index].strokeStyle = "#00ffcc"
+      ctxList[index].lineWidth = 2
+      ctxList[index].stroke()
+      timeList[index] += dt
+      if (timeList[index] > 2 * Math.PI) {
+        animationCompleteList[index] = true
+        setTimeout(() => {
+          clearPhasorsAndDrawPath(index)
+        }, 50)
+      } else {
+        requestAnimationFrame(function() {
+          animate(index)
+        })
+      }
+    }
+
+    function clearPhasorsAndDrawPath(index) {
+      ctxList[index].clearRect(0, 0, canvases[index].width, canvases[index].height)
+      ctxList[index].beginPath()
+      for (let i = 0; i < pathList[index].length; i++) {
+        if (i === 0) {
+          ctxList[index].moveTo(pathList[index][i].x, pathList[index][i].y)
+        } else {
+          ctxList[index].lineTo(pathList[index][i].x, pathList[index][i].y)
+        }
+      }
+      ctxList[index].strokeStyle = "#00ffcc"
+      ctxList[index].lineWidth = 2
+      ctxList[index].stroke()
+    }
+  </script>
+</body>
+</html>
