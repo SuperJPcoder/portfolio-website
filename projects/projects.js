@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDir = '~projects';
     let commandHistory = [];
     let historyIndex = -1;
-    
 
     const directories = {
         'projects': ['dev', 'algos', 'ai-ml', 'research'],
@@ -37,8 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'help': 'List available commands (use Tab for autocomplete)',
         'pwd': 'Show current directory',
         'exit': 'Return to navigation',
-        'ping Priyank': 'Contact Me',
-        'up/down arrow': 'History'
+        'ping Priyank': 'Contact Me'
     };
     function printToTerminal(text, color = '#00ffcc') {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -134,16 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!suggestionBox) {
             suggestionBox = document.createElement('div');
             suggestionBox.id = 'suggestions';
-            suggestionBox.style.position = 'fixed';
+            suggestionBox.style.position = 'absolute';
             suggestionBox.style.background = '#000';
             suggestionBox.style.color = '#00ffcc';
-            suggestionBox.style.opacity = '0.7';
+            suggestionBox.style.opacity = '0.95';
             suggestionBox.style.padding = '5px';
             suggestionBox.style.border = '1px solid #00ffcc';
             suggestionBox.style.zIndex = '10';
             document.body.appendChild(suggestionBox);
         }
-        suggestionBox.innerHTML = suggestions.map(item => `<div class='suggestion-item' data-value='${item}'>${item}</div>`).join('');
+        suggestionBox.innerHTML = suggestions.map(item => `<div class='suggestion-item' data-value='${item}' style='padding: 5px; cursor: pointer;'>${item}</div>`).join('');
         suggestionBox.style.display = suggestions.length ? 'block' : 'none';
         if (suggestions.length) {
             const inputRect = input.getBoundingClientRect();
@@ -152,14 +150,13 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestionBox.style.width = inputRect.width + 'px';
         }
     }
-
-    document.addEventListener('click', (e) => {
+    document.addEventListener('touchstart', (e) => {
         if (e.target.classList.contains('suggestion-item')) {
             input.value = e.target.getAttribute('data-value');
             document.getElementById('suggestions').style.display = 'none';
+            input.focus();
         }
     });
-
     function autoComplete(inputValue) {
         const args = inputValue.split(' ');
         const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
@@ -184,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return inputValue;
     }
-
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const command = input.value.trim();
