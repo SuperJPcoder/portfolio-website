@@ -52,3 +52,10 @@ setTimeout(() => {
         }, 100);
     }
 }, 5000);
+function isMobileDevice() {
+  return /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+if (isMobileDevice()) {
+  document.querySelector('.custom-cursor').style.display = 'none';
+}
