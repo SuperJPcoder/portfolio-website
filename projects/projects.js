@@ -14,17 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'research': ['EulerProof', 'Relativity']
     };
     const projectDetails = {
-        'AdoPet': 'A pet adoption portal designed with very interactive animated frontend and a robust backend. Know more @ https://github.com/SuperJPcoder/Adopet',
-        'Inventora': 'An inventory management system for general stores with a smooth UI and a database with all essesntial CRUD functionalites + more. Know more @ https://github.com/SuperJPcoder/Inventory-Management-System',
-        'Portfolio': 'My portfolio website I made for some light fun. (YOU ARE SEEING IT RN). Know more @ https://github.com/SuperJPcoder/portfolio-website',
-        'VJTI-Maps': 'A QGIS based project displaying the entire map of VJTI with easy to find places. Know more @ https://github.com/SuperJPcoder/VJTI-map-QGIS',
-        'SpatialFourier': 'A GIS project which can trandsform, store and render spatial data using fourier series, and execute spatial queries. Know more @ https://github.com/SuperJPcoder/SpatialStorageFourier',
-        'AutoAdjustLight': 'A digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp',
-        'TIR_crypto': 'A project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
-        'SuperXO': 'A superXO game with AI opponoent using minimax. Game has strategis depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
-        'AlphaZeroGo': 'A reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
-        'EulerProof': 'A beautiful proof I came up with while playing with integrals, unravelling connections in math. Know more @ https://github.com/SuperJPcoder/Euler_Research',
-        'Relativity': 'A new perspective and interpretation of the explaination for relativity given by Lewis Epstein in his book `Relativty Visualized`. Know more @ https://github.com/SuperJPcoder/Relativity'
+        'AdoPet': '\nProgress: [########..]\nA pet adoption portal designed with very interactive animated frontend and a robust backend. Know more @ https://github.com/SuperJPcoder/Adopet',
+        'Inventora': '\nProgress: [##########]\nAn inventory management system for general stores with a smooth UI and a database with all essesntial CRUD functionalites + more. Know more @ https://github.com/SuperJPcoder/Inventory-Management-System',
+        'Portfolio': '\nProgress: [#########.]\nMy portfolio website I made for some light fun. (YOU ARE SEEING IT RN). Know more @ https://github.com/SuperJPcoder/portfolio-website',
+        'VJTI-Maps': '\nProgress: [#########.]\nA QGIS based project displaying the entire map of VJTI with easy to find places. Know more @ https://github.com/SuperJPcoder/VJTI-map-QGIS',
+        'SpatialFourier': '\nProgress: [####......]\nA GIS project which can trandsform, store and render spatial data using fourier series, and execute spatial queries. Know more @ https://github.com/SuperJPcoder/SpatialStorageFourier',
+        'AutoAdjustLight': '\nProgress: [#########.]\nA digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp',
+        'TIR_crypto': '\nProgress: [##........]\nA project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
+        'SuperXO': '\nProgress: [########..]\nA superXO game with AI opponoent using minimax. Game has strategis depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
+        'AlphaZeroGo': '\nProgress: [###.......]\nA reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
+        'EulerProof': '\nProgress: [########..]\nA beautiful proof I came up with while playing with integrals, unravelling connections in math. Know more @ https://github.com/SuperJPcoder/Euler_Research',
+        'Relativity': '\nProgress: [########..]\nA new perspective and interpretation of the explaination for relativity given by Lewis Epstein in his book `Relativty Visualized`. Know more @ https://github.com/SuperJPcoder/Relativity'
     };
     const availableCommands = {
         'ls': 'List directories and projects',
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'help': 'List available commands (use Tab for autocomplete)',
         'pwd': 'Show current directory',
         'exit': 'Return to navigation',
-        'ping Priyank': 'Redirect to contact me page'
+        'ping Priyank': 'Contact Me'
     };
     function printToTerminal(text, color = '#00ffcc') {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
