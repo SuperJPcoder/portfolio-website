@@ -5,6 +5,8 @@
   <title>Priyank Jhaveri</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/katex.min.css">
   <style>
+    *{cursor: none;}
+
     body {
       margin: 0;
       overflow: hidden;
@@ -55,10 +57,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.3/katex.min.js"></script>
 </head>
 <body>
+  <div class="custom-cursor"></div>
   <canvas id="graphCanvas"></canvas>
   <div id="loading"></div>
   <div id="equations"></div>
   <script>
+
     const equationsDiv = document.getElementById('equations')
     let mouseTimeout
     function showEquations() {
