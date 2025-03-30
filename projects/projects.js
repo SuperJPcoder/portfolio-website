@@ -152,7 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.addEventListener('touchstart', (e) => {
         if (e.target.classList.contains('suggestion-item')) {
-            input.value = e.target.getAttribute('data-value');
+            const args = input.value.split(' ');
+            if (args.length > 1) {
+                input.value = `${args[0]} ${e.target.getAttribute('data-value')}`;
+            } else {
+                input.value = e.target.getAttribute('data-value');
+            }
             document.getElementById('suggestions').style.display = 'none';
             input.focus();
         }
