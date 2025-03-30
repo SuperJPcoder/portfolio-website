@@ -27,6 +27,13 @@ let showClickText = false;
 let isNavigating = false;
 let quadrantStopped = null;
 let continueButton = document.getElementById('continue-btn');
+const cursor = document.querySelector('.custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    cursor.style.transform = `translate(${x}px, ${y}px)`;
+});
 
 function typeLoadingText(text, speed) {
   let index = 0;

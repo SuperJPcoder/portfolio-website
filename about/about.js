@@ -2,6 +2,14 @@ const traitsList = ["polite", "humble", "considerate", "helpful", "modest", "man
 let traitIndex = 0;
 const containerElement = document.getElementById("traits-container");
 const traitsElement = document.getElementById("traits");
+const cursor = document.querySelector('.custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+});
 
 setInterval(() => {
   containerElement.classList.add("flip");

@@ -13,4 +13,11 @@ function openEmail(email) {
       box.style.boxShadow = "0 5px 20px rgba(255, 255, 255, 0.2)";
     });
   });
-  
+  const cursor = document.querySelector('.custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+});

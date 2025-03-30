@@ -2,6 +2,7 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+cursor: none;
 }
 body {
 overflow: hidden;
@@ -92,4 +93,15 @@ z-index: 10;
 #continue-btn:hover {
 background-color: #00cc99;
 transform: scale(1.1);
+}
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: black;
+    box-shadow: 0 0 15px 5px #00FFCC;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s ease-out;
 }

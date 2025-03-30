@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDir = '~projects';
     let commandHistory = [];
     let historyIndex = -1;
+    
+
     const directories = {
         'projects': ['dev', 'algos', 'ai-ml', 'research'],
         'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps'],

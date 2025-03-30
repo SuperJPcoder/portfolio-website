@@ -5,7 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Skills</title>
 <style>
-  * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
+  * {cursor: none; margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
+
+.custom-cursor {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  border-radius: 50%;
+  background-color: black;
+  box-shadow: 0 0 15px 5px #00FFCC;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  transition: transform 0.05s linear;
+}
   body {overflow-y: auto; position: relative; min-height: 100vh; background-color: #0a0a0a; color: #e0e0e0}
   canvas {position: fixed; top: 0; left: 0; z-index: -1}
   .scroll-container {position: relative; width: 100%; min-height: 100vh; overflow-y: auto; padding: 2rem}
@@ -82,6 +95,7 @@
   
 </head>
 <body>
+  <div class="custom-cursor"></div>
   <a href="../landing/landing.html" id="back-button">&#8592; Back</a>
 
 <canvas id="matrix"></canvas>
@@ -232,6 +246,14 @@
 </div>
 
 <script>
+  const cursor = document.querySelector('.custom-cursor');
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+});
   var canvas = document.getElementById('matrix');
   var ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
