@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentDir = '~projects';
     let commandHistory = [];
     let historyIndex = -1;
-
     const directories = {
         'projects': ['dev', 'algos', 'ai-ml', 'research'],
         'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps'],
@@ -132,16 +131,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!suggestionBox) {
             suggestionBox = document.createElement('div');
             suggestionBox.id = 'suggestions';
-            suggestionBox.style.position = 'absolute';
+            suggestionBox.style.position = 'fixed';
             suggestionBox.style.background = '#000';
             suggestionBox.style.color = '#00ffcc';
-            suggestionBox.style.opacity = '0.95';
+            suggestionBox.style.opacity = '0.7';
             suggestionBox.style.padding = '5px';
             suggestionBox.style.border = '1px solid #00ffcc';
             suggestionBox.style.zIndex = '10';
             document.body.appendChild(suggestionBox);
         }
-        suggestionBox.innerHTML = suggestions.map(item => `<div class='suggestion-item' data-value='${item}' style='padding: 5px; cursor: pointer;'>${item}</div>`).join('');
+        suggestionBox.innerHTML = suggestions.map(item => `<div class="suggestion-item" data-value="${item}">${item}</div>`).join('');
         suggestionBox.style.display = suggestions.length ? 'block' : 'none';
         if (suggestions.length) {
             const inputRect = input.getBoundingClientRect();
@@ -149,19 +148,17 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestionBox.style.top = inputRect.bottom + 'px';
             suggestionBox.style.width = inputRect.width + 'px';
         }
+        document.querySelectorAll('.suggestion-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const selectedSuggestion = e.target.getAttribute('data-value');
+                const inputValue = input.value.trim();
+                const commandPrefix = inputValue.includes(' ') ? inputValue.split(' ')[0] : '';
+                input.value = commandPrefix ? `${commandPrefix} ${selectedSuggestion}` : selectedSuggestion;
+                suggestionBox.style.display = 'none';
+                input.focus();
+            });
+        });
     }
-    document.addEventListener('touchstart', (e) => {
-        if (e.target.classList.contains('suggestion-item')) {
-            const args = input.value.split(' ');
-            if (args.length > 1) {
-                input.value = `${args[0]} ${e.target.getAttribute('data-value')}`;
-            } else {
-                input.value = e.target.getAttribute('data-value');
-            }
-            document.getElementById('suggestions').style.display = 'none';
-            input.focus();
-        }
-    });
     function autoComplete(inputValue) {
         const args = inputValue.split(' ');
         const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
