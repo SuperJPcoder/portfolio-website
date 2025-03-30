@@ -35,7 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'help': 'List available commands (use Tab for autocomplete)',
         'pwd': 'Show current directory',
         'exit': 'Return to navigation',
-        'ping Priyank': 'Contact Me'
+        'ping Priyank': 'Contact Me',
+        'up/down arrow': 'History'
     };
     function printToTerminal(text, color = '#00ffcc') {
         const urlRegex = /(https?:\/\/[^\s]+)/g;

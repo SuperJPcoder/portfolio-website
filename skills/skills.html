@@ -246,6 +246,14 @@
 </div>
 
 <script>
+  function isMobileDevice() {
+  return /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+if (isMobileDevice()) {
+  document.querySelector('.custom-cursor').style.display = 'none';
+}
+
   const cursor = document.querySelector('.custom-cursor');
 
 document.addEventListener('mousemove', (e) => {
