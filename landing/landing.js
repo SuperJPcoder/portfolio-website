@@ -188,7 +188,7 @@ function animate() {
       if (rotationCount === 1 && !showClickText) {
         showClickText = true;
         setTimeout(() => {
-          typeLoadingText('PRESS SPACEBAR TO NAVIGATE', 40);
+          typeLoadingText('PRESS SPACEBAR/CLICK TO NAVIGATE', 40);
         }, 500);
       }
     }
@@ -210,6 +210,14 @@ document.addEventListener('keydown', (e) => {
     } else {
       resetNavigation();
     }
+  }
+});
+document.addEventListener('click', (e) => {
+  if (!isNavigating) {
+    let quadrant = getQuadrant(theta);
+    stopZoomFadeRedirect(quadrant);
+  } else {
+    resetNavigation();
   }
 });
 
