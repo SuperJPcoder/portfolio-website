@@ -23,7 +23,7 @@ body {
   overflow-x: hidden;
 }
 .video-container {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
   background: #000;
@@ -32,10 +32,12 @@ body {
   justify-content: center;
 }
 video {
-  width: 100%;
+  width: 100vw;
   height: auto;
-  object-fit: cover;
+  max-height: 100vh;
+  object-fit: contain;
 }
+
 .container {
   opacity: 0;
   transform: scale(0.95);
