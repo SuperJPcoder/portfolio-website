@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'help': 'List available commands (use Tab for autocomplete)',
         'pwd': 'Show current directory',
         'exit': 'Return to navigation',
-        'ping Priyank': 'Contact Me'
+        'ping Priyank': 'Contact Me',
+        'up/down arrow': 'History'
     };
     function printToTerminal(text, color = '#00ffcc') {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestionBox.style.zIndex = '10';
             document.body.appendChild(suggestionBox);
         }
-        suggestionBox.innerHTML = suggestions.map(item => `<div>${item}</div>`).join('');
+        suggestionBox.innerHTML = suggestions.map(item => `<div class='suggestion-item' data-value='${item}'>${item}</div>`).join('');
         suggestionBox.style.display = suggestions.length ? 'block' : 'none';
         if (suggestions.length) {
             const inputRect = input.getBoundingClientRect();
@@ -151,6 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
             suggestionBox.style.width = inputRect.width + 'px';
         }
     }
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('suggestion-item')) {
+            input.value = e.target.getAttribute('data-value');
+            document.getElementById('suggestions').style.display = 'none';
+        }
+    });
+
     function autoComplete(inputValue) {
         const args = inputValue.split(' ');
         const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
@@ -175,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return inputValue;
     }
+
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             const command = input.value.trim();
