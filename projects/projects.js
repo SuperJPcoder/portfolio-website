@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let commandHistory = [];
     let historyIndex = -1;
     const directories = {
-        'projects': ['dev', 'algos', 'ai-ml', 'thinking'],
+        'projects': ['dev', 'algos', 'ai-ml', 'research'],
         'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps'],
         'algos': ['SpatialFourier', 'TIR_crypto', 'AutoAdjustLight'],
         'ai-ml': ['SuperXO', 'AlphaZeroGo'],
-        'thinking': ['EulerProof', 'Relativity']
+        'research': ['EulerProof', 'Relativity']
     };
     const projectDetails = {
         'AdoPet': 'A pet adoption portal designed with very interactive animated frontend and a robust backend. Know more @ https://github.com/SuperJPcoder/Adopet',
@@ -205,5 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     updatePrompt();
-    printToTerminal('Lets explore! Type `help` to begin. Use Tab for autocomplete(appears below).', '#ffff66');
+    printToTerminal('Lets explore! Type `help` to begin. Use Tab for autocomplete.', '#ffff66');
 });
