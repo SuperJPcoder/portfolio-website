@@ -37,6 +37,11 @@ video {
   max-height: 100vh;
   object-fit: contain;
 }
+@media (max-width: 768px) {
+  .custom-cursor {
+    display: none;
+  }
+}
 
 .container {
   opacity: 0;
