@@ -75,6 +75,31 @@ right: 20%;
 .hidden {
 display: none;
 }
+@media (orientation: portrait) {
+    #about {
+        top: 15%;
+        right: 10%;
+    }
+    #projects {
+        top: 15%;
+        left: 10%;
+    }
+    #skills {
+        bottom: 15%;
+        left: 10%;
+    }
+    #contact {
+        bottom: 15%;
+        right: 10%;
+    }
+    #hello-text {
+        font-size: 36px;
+    }
+    .quadrant-label {
+        font-size: 20px;
+    }
+}
+
 #continue-btn {
 position: absolute;
 bottom: 30px;
