@@ -68,7 +68,14 @@
         equationsDiv.style.opacity = 0
       }, 1000)
     }
-    document.addEventListener('mousemove', showEquations)
+    function initialShowEquations() {
+  showEquations()
+}
+document.addEventListener('mousemove', showEquations)
+window.addEventListener('load', () => {
+  initialShowEquations()
+})
+
     const equations = [
       "y = \\pm \\frac{12x}{7}",
       "y = \\pm 1 \\pm \\sqrt{\\frac{1}{16} - (x \\pm \\frac{1}{3})^2}",

@@ -39,7 +39,6 @@ video {
   opacity: 1;
   transform: scale(1);
 }
-
 .hidden {
   display: none;
 }
@@ -97,11 +96,6 @@ a:hover {
   color: #d1f4f2;
   margin-bottom: 8px;
 }
-#traits {
-  font-weight: bold;
-  color: #00ffcc;
-  animation: rotateTraits 7s infinite;
-}
 #traits-container {
   display: inline-block;
   padding: 3px 10px;
@@ -114,8 +108,17 @@ a:hover {
   height: 28px;
   line-height: 28px;
   text-align: center;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.6s ease-in-out;
   vertical-align: middle;
+  perspective: 500px;
+  transform-style: preserve-3d;
+}
+#traits {
+  font-weight: bold;
+  color: #00ffcc;
+}
+.flip {
+  transform: rotateY(180deg);
 }
 #back-button {
   position: fixed;
