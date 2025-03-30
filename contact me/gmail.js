@@ -21,3 +21,10 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.left = `${x}px`;
     cursor.style.top = `${y}px`;
 });
+function isMobileDevice() {
+  return /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+if (isMobileDevice()) {
+  document.querySelector('.custom-cursor').style.display = 'none';
+}
