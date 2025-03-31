@@ -1,4 +1,4 @@
-const traitsList = ["polite", "humble", "considerate", "helpful", "modest", "mannered", "cultured"];
+const traitsList = ["polite", "humble", "considerate", "helpful", "cultured"];
 let traitIndex = 0;
 const containerElement = document.getElementById("traits-container");
 const traitsElement = document.getElementById("traits");
