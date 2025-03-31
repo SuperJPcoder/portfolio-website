@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let commandHistory = [];
     let historyIndex = -1;
     const directories = {
-        'projects': ['dev', 'algos', 'ai-ml', 'research'],
+        'projects': ['dev', 'algos', 'ai|ml', 'research'],
         'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps', 'Red-Tape-Blue-Tape', 'Canteen-Khata'],
         'algos': ['SpatialFourier', 'TIR_crypto', 'AutoAdjustLight'],
-        'ai-ml': ['SuperXO', 'AlphaZeroGo'],
+        'ai|ml': ['SuperXO', 'AlphaZeroGo'],
         'research': ['EulerProof', 'Relativity']
     };
     const projectDetails = {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'Red-Tape-Blue-Tape': '\nProgress: [####......]\nA web project which reduces bureacrutic overhead for student club activities, making life of student club representatives easier. Know more @ https://github.com/SuperJPcoder/Red-Tape-Blue-Tape',
         'Canteen-Khata': '\nProgress: [##........]\nA web project aimed at streamlining ordering, billing and other facilites of canteen for benefit of students, faculties and staff. Know more @ https://github.com/SuperJPcoder/canteen-khata',
         'SpatialFourier': '\nProgress: [####......]\nA GIS project which can transform, store and render spatial data using fourier series, and execute spatial queries. Know more @ https://github.com/SuperJPcoder/Spatial_Storage_Fourier',
-        'AutoAdjustLight': '\nProgress: [#########.]\nA digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp',
+        'AutoAdjustLight': '\nProgress: [#########.]\nA digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp. Know more @ https://github.com/SuperJPcoder/AdaptiveLED',
         'TIR_crypto': '\nProgress: [##........]\nA project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
         'SuperXO': '\nProgress: [########..]\nA superXO game with AI opponoent using minimax. Game has strategis depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
         'AlphaZeroGo': '\nProgress: [###.......]\nA reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
