@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let historyIndex = -1;
     const directories = {
         'projects': ['dev', 'algos', 'ai-ml', 'research'],
-        'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps'],
+        'dev': ['AdoPet', 'Inventora', 'Portfolio', 'VJTI-Maps', 'Red-Tape-Blue-Tape', 'Canteen-Khata'],
         'algos': ['SpatialFourier', 'TIR_crypto', 'AutoAdjustLight'],
         'ai-ml': ['SuperXO', 'AlphaZeroGo'],
         'research': ['EulerProof', 'Relativity']
@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         'Inventora': '\nProgress: [##########]\nAn inventory management system for general stores with a smooth UI and a database with all essesntial CRUD functionalites + more. Know more @ https://github.com/SuperJPcoder/Inventory-Management-System',
         'Portfolio': '\nProgress: [#########.]\nMy portfolio website I made for some light fun. (YOU ARE SEEING IT RN). Know more @ https://github.com/SuperJPcoder/portfolio-website',
         'VJTI-Maps': '\nProgress: [#########.]\nA QGIS based project displaying the entire map of VJTI with easy to find places. Know more @ https://github.com/SuperJPcoder/VJTI-map-QGIS',
+        'Red-Tape-Blue-Tape': '\nProgress: [####......]\nA web project which reduces bureacrutic overhead for student club activities, making life of student club representatives easier. Know more @ https://github.com/SuperJPcoder/Red-Tape-Blue-Tape',
+        'Canteen-Khata': '\nProgress: [##........]\nA web project aimed at streamlining ordering, billing and other facilites of canteen for benefit of students, faculties and staff. Know more @ https://github.com/SuperJPcoder/canteen-khata',
         'SpatialFourier': '\nProgress: [####......]\nA GIS project which can trandsform, store and render spatial data using fourier series, and execute spatial queries. Know more @ https://github.com/SuperJPcoder/SpatialStorageFourier',
         'AutoAdjustLight': '\nProgress: [#########.]\nA digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp',
         'TIR_crypto': '\nProgress: [##........]\nA project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
@@ -38,6 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
         'ping Priyank': 'Contact Me',
         'up/down arrow': 'History'
     };
+    const heart = `
+   ,ad8PPPP88b,     ,d88PPPP8ba,
+  d8P"      "Y8b, ,d8P"      "Y8b
+ dP'           "8a8"           \`Yd
+ 8(              "              )8
+ I8  -25 | -1 | -17 | +3 | -4   8I
+  Yb,                         ,dP
+   "8a,                     ,a8"
+     "8a,                 ,a8"
+       "Yba             adP"   
+         \`Y8a         a8P'
+           \`88,     ,88'
+             "8b   d8"
+              "8b d8"
+               \`888'
+                 "
+`;
+
     function printToTerminal(text, color = '#00ffcc') {
         const urlRegex = /(https?:\/\/[^\s]+)/g;
         const formattedText = text.replace(urlRegex, (url) => {
@@ -103,6 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'help':
                 showHelp();
                 break;
+            case 'lovee':
+                    printToTerminal(heart, '#ff6699');
+                    break;
+                
             case 'pwd':
                 printToTerminal(currentDir, '#00ffff');
                 break;
