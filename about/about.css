@@ -140,7 +140,7 @@ a:hover {
 .flip {
   transform: rotateY(180deg);
 }
-#back-button {
+#back-button, #skip-button {
   position: fixed;
   top: 20px;
   left: 20px;
@@ -154,7 +154,7 @@ a:hover {
   transition: all 0.3s ease-in-out;
   z-index: 1000;
 }
-#back-button:hover {
+#back-button:hover, #skip-button:hover {
   background-color: #00cc99;
   color: #0a0a0a;
   transform: scale(1.05);

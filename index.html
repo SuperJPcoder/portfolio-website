@@ -31,6 +31,26 @@
       bottom: 8%;
       animation: pulse 1.5s infinite ease-in-out;
     }
+    #skip-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  color: #00ffcc;
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 1px solid #00cc99;
+  border-radius: 8px;
+  background-color: rgba(0, 255, 204, 0.1);
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+#skip-button:hover {
+  background-color: #00cc99;
+  color: #0a0a0a;
+  transform: scale(1.05);
+}
+
     #equations {
       position: absolute;
       top: 10%;
@@ -58,10 +78,23 @@
 </head>
 <body>
   <div class="custom-cursor"></div>
+  <a href="./landing/landing.html" id="skip-button">&#8594; Click or Enter to Skip</a>
+
   <canvas id="graphCanvas"></canvas>
   <div id="loading"></div>
   <div id="equations"></div>
   <script>
+function skipToLanding() {
+  window.location.href = "./landing/landing.html";
+}
+
+document.getElementById("skip-button").addEventListener("click", skipToLanding);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    skipToLanding();
+  }
+});
 
     const equationsDiv = document.getElementById('equations')
     let mouseTimeout

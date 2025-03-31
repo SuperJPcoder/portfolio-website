@@ -4,6 +4,8 @@ const containerElement = document.getElementById("traits-container");
 const traitsElement = document.getElementById("traits");
 const cursor = document.querySelector('.custom-cursor');
 const video = document.getElementById("intro-video");
+const skipButton = document.getElementById("skip-button");
+const backButton = document.getElementById("back-button");
 
 document.addEventListener('mousemove', (e) => {
     const x = e.clientX;
@@ -29,29 +31,36 @@ function playVideo() {
     });
 }
 
-// Ensure video plays properly on mobile and desktop
-playVideo();
+// Skip button functionality
+skipButton.addEventListener("click", () => {
+    video.pause();
+    video.currentTime = video.duration;
+    video.dispatchEvent(new Event("ended"));
+});
 
+// Hide skip and show back after video
 video.onended = () => {
     document.querySelector(".video-container").style.display = "none";
     const container = document.querySelector(".container");
     container.classList.remove("hidden");
     setTimeout(() => {
         container.classList.add("show");
+        skipButton.classList.add("hidden");
+        backButton.classList.remove("hidden");
     }, 100);
 };
+
+// Ensure video plays properly on mobile and desktop
+playVideo();
 
 // Fallback to show content if video doesn't load after 5 seconds
 setTimeout(() => {
     if (video.readyState < 3 || video.ended) {
-        document.querySelector(".video-container").style.display = "none";
-        const container = document.querySelector(".container");
-        container.classList.remove("hidden");
-        setTimeout(() => {
-            container.classList.add("show");
-        }, 100);
+        video.pause();
+        video.dispatchEvent(new Event("ended"));
     }
 }, 5000);
+
 function isMobileDevice() {
   return /iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 }
