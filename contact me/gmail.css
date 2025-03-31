@@ -98,4 +98,9 @@ body {
     color: #0a0a0a;
     transform: scale(1.05);
   }
-  
+
+  @media (max-width: 768px) {
+    .container {
+      margin-top: 50px;
+    }
+  }
