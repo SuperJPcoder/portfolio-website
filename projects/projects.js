@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
              "8b   d8"
               "8b d8"
                \`888'
-                 "
+                 ",
+        ...and it's a synonym
 `;
 
     function printToTerminal(text, color = '#00ffcc') {
