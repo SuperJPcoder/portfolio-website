@@ -31,11 +31,21 @@ function playVideo() {
     });
 }
 
-// Skip button functionality
-skipButton.addEventListener("click", () => {
+// Function to skip video
+function skipVideo() {
     video.pause();
     video.currentTime = video.duration;
     video.dispatchEvent(new Event("ended"));
+}
+
+// Skip button functionality
+skipButton.addEventListener("click", skipVideo);
+
+// Also trigger skip when Enter key is pressed
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        skipVideo();
+    }
 });
 
 // Hide skip and show back after video
