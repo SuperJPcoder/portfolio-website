@@ -56,6 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
               "8b d8"
                \`888'
                  ",
+        | . | |¯¯¯ \\ ./ /\\ \\  /
+        |___| |___  \\/ /  \\ \\/
         ...and it's a synonym
 `;
 
