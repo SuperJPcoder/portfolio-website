@@ -112,14 +112,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     printToTerminal('Usage: cd [name]', '#ff6666');
                 }
                 break;
-            case 'cat':
-                const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
-                if (args[1] && directories[currentDirKey]?.includes(args[1]) && projectDetails[args[1]]) {
-                    printToTerminal(`\n${args[1]}: ${projectDetails[args[1]]}`, '#66ff66');
-                } else {
-                    printToTerminal('cat: Invalid project name or missing argument.', '#ff6666');
-                }
-                break;
+                case 'cat':
+                    const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
+                    if (args[1]) {
+                        const typedProject = args[1].toLowerCase();
+                        const actualProject = directories[currentDirKey]?.find(
+                            item => item.toLowerCase() === typedProject
+                        );
+                        if (actualProject && projectDetails[actualProject]) {
+                            printToTerminal(`\n${actualProject}: ${projectDetails[actualProject]}`, '#66ff66');
+                        } else {
+                            printToTerminal('cat: Invalid project name or missing argument.', '#ff6666');
+                        }
+                    } else {
+                        printToTerminal('cat: Invalid project name or missing argument.', '#ff6666');
+                    }
+                    break;
+                
             case 'clear':
                 output.innerHTML = '';
                 break;
@@ -190,30 +199,39 @@ document.addEventListener('DOMContentLoaded', () => {
     function autoComplete(inputValue) {
         const args = inputValue.split(' ');
         const currentDirKey = currentDir === '~projects' ? 'projects' : currentDir.replace('~projects/', '');
+    
         if (args.length === 2 && args[0] === 'cat') {
-            const possibilities = directories[currentDirKey]?.filter(item => item.startsWith(args[1])) || [];
+            const typed = args[1].toLowerCase();
+            const possibilities = directories[currentDirKey]?.filter(item => item.toLowerCase().startsWith(typed)) || [];
             showAutoCompleteSuggestions(possibilities);
             return possibilities.length === 1 ? `cat ${possibilities[0]}` : inputValue;
         }
+    
         if (args.length === 2 && args[0] === 'cd' && currentDir === '~projects') {
-            const possibilities = directories['projects'].filter(item => item.startsWith(args[1]));
+            const typed = args[1].toLowerCase();
+            const possibilities = directories['projects'].filter(item => item.toLowerCase().startsWith(typed));
             showAutoCompleteSuggestions(possibilities);
             return possibilities.length === 1 ? `cd ${possibilities[0]}` : inputValue;
         }
+    
         if (args.length === 2 && args[0] === 'ping') {
-            if ('Priyank'.startsWith(args[1])) {
+            const typed = args[1].toLowerCase();
+            if ('priyank'.startsWith(typed)) {
                 showAutoCompleteSuggestions(['Priyank']);
                 return `ping Priyank`;
             }
         }
+    
         if (inputValue === '') {
             showAutoCompleteSuggestions([]);
         }
+    
         return inputValue;
     }
+    
     input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            const command = input.value.trim();
+            const command = input.value.trim().toLowerCase();
             if (command) {
                 commandHistory.push(command);
                 historyIndex = commandHistory.length;
@@ -237,9 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } else if (e.key === 'Tab') {
             e.preventDefault();
-            input.value = autoComplete(input.value.trim());
+            input.value = autoComplete(input.value.trim().toLowerCase());
         } else {
-            autoComplete(input.value.trim());
+            autoComplete(input.value.trim().toLowerCase());
         }
     });
     updatePrompt();
