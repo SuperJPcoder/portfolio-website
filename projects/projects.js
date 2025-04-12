@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'help': 'List available commands (use Tab for autocomplete)',
         'pwd': 'Show current directory',
         'exit': 'Return to navigation',
-        'ping Priyank': 'Contact Me',
+        'ping priyank': 'Contact Me',
         'up/down arrow': 'History'
     };
     const heart = `
