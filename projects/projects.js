@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 1000);
                 break;
             case 'ping':
-                if (args[1] === 'Priyank') {
+                if (args[1] === 'priyank') {
                     printToTerminal('Pinging Priyank... Redirecting to contact page.', '#66ff66');
                     setTimeout(() => {
                         window.location.href = '../contact%20me/contact.html';
@@ -217,8 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (args.length === 2 && args[0] === 'ping') {
             const typed = args[1].toLowerCase();
             if ('priyank'.startsWith(typed)) {
-                showAutoCompleteSuggestions(['Priyank']);
-                return `ping Priyank`;
+                showAutoCompleteSuggestions(['priyank']);
+                return `ping priyank`;
             }
         }
     
