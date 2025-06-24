@@ -1,3 +1,5 @@
+// ... (all your existing code from the top)
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -179,6 +181,20 @@ function animate() {
   } else if (state === 'vector') {
     drawAxes(1);
     drawGrid(1);
+
+    // --- START: Added Code ---
+    // Highlight the current quadrant
+    const currentQuadrant = getQuadrant(theta);
+    Object.keys(quadrantLabels).forEach(key => {
+      const labelElement = quadrantLabels[key];
+      if (key === currentQuadrant && !isNavigating) {
+        labelElement.classList.add('highlighted');
+      } else {
+        labelElement.classList.remove('highlighted');
+      }
+    });
+    // --- END: Added Code ---
+
     drawVector(theta);
     updateText(theta);
     theta += (2 * Math.PI) / frames;
@@ -193,7 +209,7 @@ function animate() {
       }
     }
   }
-  if (state !== 'end') {
+  if (!isNavigating) { // MODIFIED: Check isNavigating instead of state
     requestAnimationFrame(animate);
   }
 }
@@ -277,22 +293,23 @@ function redirectToPage(quadrant) {
   } else if (quadrant === 'skills') {
     window.location.href = '../skills/skills.html';
   } else if (quadrant === 'contact') {
-    window.location.href = '../contact me/contact.html';
+    window.location.href = '../contact/contact.html';
   }
 }
 
+// NOTE: I've updated the logic for restarting the animation
 function resetNavigation() {
-  continueButton.classList.add('hidden');
-  canvas.style.transition = 'opacity 1s ease-in-out, transform 1.5s ease-in-out';
-  canvas.style.opacity = 1;
-  canvas.style.transform = 'translate(0, 0) scale(1)';
-  document.getElementById('euler-text').style.opacity = 1;
-  document.getElementById('loading-text').style.opacity = 0.8;
-  showAllQuadrants();
-  setTimeout(() => {
-    isNavigating = false;
-  }, 1500);
+    continueButton.classList.add('hidden');
+    canvas.style.transition = 'opacity 1s ease-in-out, transform 1.5s ease-in-out';
+    canvas.style.opacity = 1;
+    canvas.style.transform = 'translate(0, 0) scale(1)';
+    document.getElementById('euler-text').style.opacity = 1;
+    document.getElementById('loading-text').style.opacity = 0.8;
+    showAllQuadrants();
+    isNavigating = false; // Set navigating to false
+    requestAnimationFrame(animate); // Restart the animation loop
 }
+
 
 function showAllQuadrants() {
   Object.keys(quadrantLabels).forEach((key) => {
