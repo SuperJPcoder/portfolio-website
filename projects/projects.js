@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'AutoAdjustLight': '\nProgress: [#########.]\nA digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp. Know more @ https://github.com/SuperJPcoder/AdaptiveLED',
         'TIR_crypto': '\nProgress: [##........]\nA project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
         'SuperXO': '\nProgress: [########..]\nA superXO game with AI opponoent using minimax. Game has strategis depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
-        'AlphaZeroGo': '\nProgress: [###.......]\nA reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
+        'AlphaZeroGo': '\nProgress: [#########.]\nA reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
         'EulerProof': '\nProgress: [########..]\nA beautiful proof I came up with while playing with integrals, unravelling connections in math. Know more @ https://github.com/SuperJPcoder/Euler_Research',
         'Relativity': '\nProgress: [########..]\nA new perspective and interpretation of the explaination for relativity given by Lewis Epstein in his book `Relativty Visualized`. Know more @ https://github.com/SuperJPcoder/Relativity'
     };
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   d8P"      "Y8b, ,d8P"      "Y8b
  dP'           "8a8"           \`Yd
  8(              "              )8
- I8  -25 | -1 | -17 | +3 | -4   8I
+ I8                             8I
   Yb,                         ,dP
    "8a,                     ,a8"
      "8a,                 ,a8"
@@ -56,9 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
               "8b d8"
                \`888'
                  ",
-        | . | |¯¯¯ \\ ./ /\\ \\  /
-        |___| |___  \\/ /  \\ \\/
-        ...and it's a synonym
+      Aha so you finally saw this?
+            Naam add karu?
+
+           Oh wait u forgot? 
+      I'm an engineering student :)
 `;
 
     function printToTerminal(text, color = '#00ffcc') {
