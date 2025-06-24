@@ -14,16 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
         'research': ['EulerProof', 'Relativity']
     };
     const projectDetails = {
-        'AdoPet': '\nProgress: [########..]\nA pet adoption portal designed with very interactive animated frontend and a robust backend. Know more @ https://github.com/SuperJPcoder/Adopet',
+        'AdoPet': '\nProgress: [#########.]\nA pet adoption portal designed with very interactive animated frontend and a robust backend. Know more @ https://github.com/SuperJPcoder/Adopet',
         'Inventora': '\nProgress: [##########]\nAn inventory management system for general stores with a smooth UI and a database with all essesntial CRUD functionalites + more. Know more @ https://github.com/SuperJPcoder/Inventory-Management-System',
         'Portfolio': '\nProgress: [#########.]\nMy portfolio website I made for some light fun. (YOU ARE SEEING IT RN). Know more @ https://github.com/SuperJPcoder/portfolio-website',
         'VJTI-Maps': '\nProgress: [#########.]\nA QGIS based project displaying the entire map of VJTI with easy to find places. Know more @ https://github.com/SuperJPcoder/VJTI-map-QGIS',
-        'Red-Tape-Blue-Tape': '\nProgress: [####......]\nA web project which reduces bureacrutic overhead for student club activities, making life of student club representatives easier. Know more @ https://github.com/SuperJPcoder/Red-Tape-Blue-Tape',
+        'Red-Tape-Blue-Tape': '\nProgress: [###.......]\nA web project which reduces bureacrutic overhead for student club activities, making life of student club representatives easier. Know more @ https://github.com/SuperJPcoder/Red-Tape-Blue-Tape',
         'Canteen-Khata': '\nProgress: [##........]\nA web project aimed at streamlining ordering, billing and other facilites of canteen for benefit of students, faculties and staff. Know more @ https://github.com/SuperJPcoder/canteen-khata',
         'SpatialFourier': '\nProgress: [####......]\nA GIS project which can transform, store and render spatial data using fourier series, and execute spatial queries. Know more @ https://github.com/SuperJPcoder/Spatial_Storage_Fourier',
         'AutoAdjustLight': '\nProgress: [#########.]\nA digital logic design project which, without the use of expensive microcontrollers - solely based on logic, can sense surrounding brightness and automatically & dynamically keep adjusting the brightness of a lamp. Know more @ https://github.com/SuperJPcoder/AdaptiveLED',
         'TIR_crypto': '\nProgress: [##........]\nA project which can encrypt and decrypt messages using principles of optics. Know more @ https://github.com/SuperJPcoder/Light-TIR-Cryptography',
-        'SuperXO': '\nProgress: [########..]\nA superXO game with AI opponoent using minimax. Game has strategis depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
+        'SuperXO': '\nProgress: [#########.]\nA superXO game with AI opponoent using minimax. Game has strategic depth as there are boards within board with moves being restricted. Know more @ https://github.com/SuperJPcoder/Ultimate-Tic-Tac-Toe',
         'AlphaZeroGo': '\nProgress: [#########.]\nA reinforcement learning model which trains on its own games to master the game of Go. Know more @ https://github.com/SuperJPcoder/AmiGo',
         'EulerProof': '\nProgress: [########..]\nA beautiful proof I came up with while playing with integrals, unravelling connections in math. Know more @ https://github.com/SuperJPcoder/Euler_Research',
         'Relativity': '\nProgress: [########..]\nA new perspective and interpretation of the explaination for relativity given by Lewis Epstein in his book `Relativty Visualized`. Know more @ https://github.com/SuperJPcoder/Relativity'
