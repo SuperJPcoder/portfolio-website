@@ -30,11 +30,27 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
+
+.intro-text {
+  opacity: 0; /* Start invisible */
+  font-size: 12vw;
+  margin-bottom: 2vh;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00ffcc, #00cc99);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 15px #00ffcc;
+  text-align: center;
+  animation: fadeIn 1.5s ease-in forwards; /* Apply the animation */
+}
+
 video {
   width: 100vw;
   height: auto;
-  max-height: 100vh;
+  max-height: 70vh;
   object-fit: contain;
 }
 @media (max-width: 768px) {
@@ -158,4 +174,12 @@ a:hover {
   background-color: #00cc99;
   color: #0a0a0a;
   transform: scale(1.05);
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
