@@ -3,15 +3,30 @@
 <head>
     <link rel="stylesheet" type="text/css" href="whatsapp.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prove Your Worth</title>
 </head>
 <body>
     <div class="custom-cursor"></div>
-    <div class="container">
+
+    <!-- Initial Challenge Screen -->
+    <div class="container" id="initial-container">
         <h1 class="title">WHOA! Slow down, champ!</h1>
         <p class="tease">What made you think I'd just give away my number?</p>
         <p class="challenge">First prove your worth!</p>
-        <button class="prove-btn" onclick="redirectToContact()">Accept the Challenge</button>
+        <button class="prove-btn" id="challenge-btn">Accept the Challenge</button>
     </div>
+
+    <!-- The Terminal Game Screen (hidden by default) -->
+    <div class="terminal-container" id="terminal-container" style="display: none;">
+        <div class="terminal-output" id="terminal-output">
+            <!-- Game dialogue will be printed here by JavaScript -->
+        </div>
+        <div class="terminal-prompt">
+            <span class="prompt-user">guest@portfolio:~$</span>
+            <input type="text" id="terminal-input" class="terminal-input" autofocus autocomplete="off">
+        </div>
+    </div>
+
     <script src="whatsapp.js"></script>
 </body>
 </html>

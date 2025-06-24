@@ -17,17 +17,20 @@
     z-index: 9999;
     transition: transform 0.05s linear;
     opacity: 0; /* Initially hidden */
-  }
+}
+
 body {
     background-color: #000;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Courier New', Courier, monospace; /* Classic terminal font */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
+    color: #00ffcc;
 }
 
+/* --- Initial Screen Styles --- */
 .container {
     text-align: center;
     background: rgba(0, 0, 0, 0.9);
@@ -42,7 +45,6 @@ body {
     font-size: 2.5rem;
     color: #00ffcc;
     text-shadow: 0 0 10px #00ffcc;
-    animation: fadeIn 2s ease-in-out;
 }
 
 .tease {
@@ -65,11 +67,12 @@ body {
     background-color: #00ffcc;
     color: #000;
     font-size: 1.1rem;
+    font-family: 'Courier New', Courier, monospace;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     box-shadow: 0 0 15px #00ffcc;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s;
 }
 
 .prove-btn:hover {
@@ -77,33 +80,89 @@ body {
     box-shadow: 0 0 25px #00ffcc;
     background-color: #000;
     color: #00ffcc;
-    text-shadow: 0 0 5px #00ffcc;
+    border: 1px solid #00ffcc;
 }
 
-.secret {
-    margin-top: 20px;
-    font-size: 1.2rem;
+/* --- Terminal Screen Styles --- */
+.terminal-container {
+    width: 80vw;
+    max-width: 800px;
+    height: 80vh;
+    max-height: 600px;
+    background: #0a0a0a;
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.terminal-output {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.terminal-output p {
+    margin-bottom: 5px;
+    white-space: pre-wrap; /* Preserve spaces and line breaks */
+}
+
+/* --- Text Colors --- */
+.text-system { color: #f1c40f; } /* Yellow for system messages */
+.text-ai { color: #e0e0e0; } /* Light gray for AI */
+.text-error { color: #e74c3c; } /* Red for errors */
+.text-success { color: #2ecc71; } /* Bright green for success */
+.text-prompt { color: #3498db; } /* Blue for the user's echoed command */
+
+.terminal-prompt {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: 1px solid #00ffcc;
+    background-color: #000;
+}
+
+.prompt-user {
     color: #00ffcc;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    margin-right: 10px;
+    font-weight: bold;
 }
 
+.terminal-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #00ffcc;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1rem;
+    outline: none;
+    padding: 5px;
+}
+
+.terminal-btn {
+    margin-top: 20px; /* Spacing for the button */
+    padding: 10px 20px;
+    background-color: #00ffcc;
+    color: #000;
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.terminal-btn:hover {
+    background-color: #000;
+    color: #00ffcc;
+    border: 1px solid #00ffcc;
+}
+
+
+/* --- Keyframe Animations --- */
 @keyframes glow {
-    0% {
-        box-shadow: 0 0 15px #00ffcc;
-    }
-    100% {
-        box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc;
-    }
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { box-shadow: 0 0 15px #00ffcc; }
+    to { box-shadow: 0 0 25px #00ffcc, 0 0 50px #00ffcc; }
 }
