@@ -293,7 +293,7 @@ function redirectToPage(quadrant) {
   } else if (quadrant === 'skills') {
     window.location.href = '../skills/skills.html';
   } else if (quadrant === 'contact') {
-    window.location.href = '../contact/contact.html';
+    window.location.href = '../contact%20me/contact.html';
   }
 }
 

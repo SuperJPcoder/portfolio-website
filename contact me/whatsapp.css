@@ -110,7 +110,32 @@ body {
     margin-bottom: 5px;
     white-space: pre-wrap; /* Preserve spaces and line breaks */
 }
+/* --- Custom Scrollbar for Terminal --- */
+.terminal-output {
+    /* For Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #00ffcc #0a0a0a;
+}
 
+/* For Chrome, Safari, and Edge */
+.terminal-output::-webkit-scrollbar {
+    width: 12px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+    background: #0a0a0a; /* The dark background of the terminal */
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+    background-color: #00ffcc; /* The bright accent color */
+    border-radius: 20px;
+    border: 3px solid #0a0a0a; /* Creates padding around thumb */
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+    background-color: #ffffff; /* Make it pop on hover */
+    box-shadow: 0 0 10px #00ffcc; /* Add a fitting glow effect */
+}
 /* --- Text Colors --- */
 .text-system { color: #f1c40f; } /* Yellow for system messages */
 .text-ai { color: #e0e0e0; } /* Light gray for AI */
